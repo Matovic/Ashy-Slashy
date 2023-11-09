@@ -6,11 +6,11 @@ public class PlayerAnimation : MonoBehaviour
 {
     private System.DateTime _startTime;
     
-    public GameObject general, Helmet, Ordinary;
-    public Animator generalAnimator, helmetAnimator, ordinaryAnimator;
+    [SerializeField] private GameObject general, Helmet, Ordinary;
+    [SerializeField] private Animator generalAnimator, helmetAnimator, ordinaryAnimator;
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         generalAnimator = general.GetComponent<Animator>();
         helmetAnimator = Helmet.GetComponent<Animator>();
@@ -19,31 +19,39 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        System.TimeSpan ts = System.DateTime.UtcNow - _startTime;
-        // Animation
-        if (direction.x == 0 && ts.Seconds >= 6)
+        var direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        var ts = System.DateTime.UtcNow - _startTime;
+        switch (direction.x)
         {
-            //Debug.Log("Yawn"); //, ts.Seconds.ToString ()
-            generalAnimator.SetInteger("Animate", 1);
-        }
-        else if (direction.x == 0 && ts.Seconds is >= 3 and < 6)
-        {
-            //Debug.Log("Bored"); //, ts.Seconds.ToString ()
-            generalAnimator.SetInteger("Animate", 3);
-        }
-        else if (direction.x == 0 && ts.Seconds < 3)
-        {
-            //Debug.Log("Idle");
-            generalAnimator.SetInteger("Animate", 0);
-        }
-        else if (direction.x != 0)
-        {
-            _startTime = System.DateTime.UtcNow;
-            //Debug.Log("Walk");
-            generalAnimator.SetInteger("Animate", 2);
+            // Animation
+            // Yawn animation
+            case 0 when ts.Seconds >= 6:
+                //Debug.Log("Yawn"); //, ts.Seconds.ToString ()
+                generalAnimator.SetInteger("Animate", 1);
+                break;
+            // Bored animation
+            case 0 when ts.Seconds is >= 3 and < 6:
+                //Debug.Log("Bored"); //, ts.Seconds.ToString ()
+                generalAnimator.SetInteger("Animate", 3);
+                break;
+            // Idle animation
+            case 0 when ts.Seconds < 3:
+                //Debug.Log("Idle");
+                generalAnimator.SetInteger("Animate", 0);
+                break;
+            // Walk animation
+            default:
+            {
+                if (direction.x != 0)
+                {
+                    _startTime = System.DateTime.UtcNow;
+                    //Debug.Log("Walk");
+                    generalAnimator.SetInteger("Animate", 2);
+                }
+                break;
+            }
         }
     }
 }
