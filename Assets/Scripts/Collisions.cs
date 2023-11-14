@@ -12,12 +12,24 @@ public class Collisions : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log($"{name} because a collision with {collision.gameObject.name}");
+        //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
         if (collision.CompareTag("Ladders"))
         {
             playerMovement.onLadder = true;
         }
-        
+        else if (collision.CompareTag("Boxes"))
+        {
+            //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
+            playerActionController.isBreakable = true;
+            PlayerActionController.SetGameObject("Box", collision.gameObject);
+        }
+        /*else if (collision.CompareTag("Ammo"))
+        {
+            playerActionController.isPickable = true;
+            //Debug.Log($"AMMO: {name} because a collision with {collision.gameObject.name}");
+            //playerActionController.isBreakable = true;
+            //PlayerActionController.SetGameObject("Box", collision.gameObject);
+        }*/
         else if (collision.gameObject.name == "Shotgun")
         {
             playerActionController.isPickable = true;

@@ -57,38 +57,26 @@ public class PlayerMovement : MonoBehaviour
         _spriteRenderer.flipX = flipX;
         if(hasShotgun) _shotgunSpriteRenderer.flipX = flipX;
         
-
         if (onLadder)
         {
             _rigidBody2D.gravityScale = 0;
             _rigidBody2D.velocity = Vector3.zero;
         }
         else
-        {
             _rigidBody2D.gravityScale = 1;
-        }
 
-        // move
+        // moving section
+        // move right
         if (Input.GetAxis("Horizontal") > 0)
-        {
-            // move right
-            transform.position += transform.right * (isRunning ? speed * runMultiplier : speed) * Time.deltaTime;
-        }
+            transform.position += transform.right * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+        // move left
         else if (Input.GetAxis("Horizontal") < 0)
-        {
-            // move left
-            transform.position += -transform.right * (isRunning ? speed * runMultiplier : speed) * Time.deltaTime;
-        }
+            transform.position += -transform.right * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+        // move up
         if (Input.GetAxis("Vertical") > 0 && onLadder)
-        {
-            // move up
-            transform.position += transform.up * (isRunning ? speed * runMultiplier : speed) * Time.deltaTime;
-        }
+            transform.position += transform.up * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+        // move down
         else if (Input.GetAxis("Vertical") < 0 && onLadder)
-        {
-            // move down
-            transform.position += -transform.up * (isRunning ? speed * runMultiplier : speed) * Time.deltaTime;
-        }
-        //transform.Translate(direction * (isRunning ? speed*runMultiplier : speed) * Time.deltaTime);
+            transform.position += -transform.up * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
     }
 }
