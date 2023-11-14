@@ -1,15 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Collisions : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerActionController playerActionController;
-    //void private OnTriggerEnter2D(Collider2D collision)
-    //{
-    //}
+    private PickUp _pickUp;
 
+    private void Start()
+    {
+        _pickUp = GameObject.FindGameObjectWithTag("Ammo").GetComponent<PickUp>();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ammo"))
+        {
+            //GameObject o;
+            //_pickUp = (o = collision.gameObject).GetComponent<PickUp>();
+            _pickUp.DrawAmmos(collision.gameObject);
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
@@ -47,17 +60,5 @@ public class Collisions : MonoBehaviour
         {
             playerActionController.isPickable = false;
         }
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

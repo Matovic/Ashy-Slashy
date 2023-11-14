@@ -62,8 +62,7 @@ public class PlayerMovement : MonoBehaviour
             _rigidBody2D.gravityScale = 0;
             _rigidBody2D.velocity = Vector3.zero;
         }
-        else
-            _rigidBody2D.gravityScale = 1;
+        else _rigidBody2D.gravityScale = 1;
 
         // moving section
         // move right

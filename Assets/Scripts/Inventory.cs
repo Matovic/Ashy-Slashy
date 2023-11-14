@@ -6,15 +6,14 @@ public class Inventory : MonoBehaviour
 {
     public List<bool> isFull;
     public List<GameObject> slots = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int countBullets = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void IncrementBullets()
     {
-        
+        ++countBullets;
+    }
+    public int GetBullets()
+    {
+        return countBullets;
     }
 }

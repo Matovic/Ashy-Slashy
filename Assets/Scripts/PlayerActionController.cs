@@ -9,7 +9,8 @@ public class PlayerActionController : MonoBehaviour
     [SerializeField] private GameObject general;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject shotgun;
-    [SerializeField] private static GameObject box;
+    private static GameObject _box;
+    private PickUp _pickUp;
     public bool isPickable, isBreakable = false;
 
     public static void SetGameObject(string typeGameObject, GameObject gameObj)
@@ -17,14 +18,14 @@ public class PlayerActionController : MonoBehaviour
         if(typeGameObject.ToLower() == "box")
         {
             //Debug.Log("box");
-            box = gameObj;
+            _box = gameObj;
         }
     }
     
     // Start is called before the first frame update
     private void Start()
     {
-        
+        _pickUp = shotgun.GetComponent<PickUp>();
     }
 
     // Update is called once per frame
@@ -37,10 +38,11 @@ public class PlayerActionController : MonoBehaviour
             shotgun.transform.SetParent(general.transform);
             shotgun.transform.localPosition = new Vector3(0.0f, 0.5f, -1.0f);
             playerMovement.hasShotgun = true;
+            _pickUp.DrawShotgun();
         }
         else if (isBreakable && action != 0.0f)
         {
-            Destroy(box);
+            Destroy(_box);
             //Debug.Log("Destroy!");
         }
         /*else if (isPickable && action != 0.0f)
