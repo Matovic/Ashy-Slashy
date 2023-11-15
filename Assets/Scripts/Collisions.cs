@@ -19,7 +19,7 @@ public class Collisions : MonoBehaviour
         if (collision.CompareTag("Ammo"))
         {
             //GameObject o;
-            //_pickUp = (o = collision.gameObject).GetComponent<PickUp>();
+            _pickUp = collision.gameObject.GetComponent<PickUp>();
             _pickUp.DrawAmmos(collision.gameObject);
         }
     }

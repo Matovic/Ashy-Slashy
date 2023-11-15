@@ -42,7 +42,10 @@ public class PlayerActionController : MonoBehaviour
         }
         else if (isBreakable && action != 0.0f)
         {
-            Destroy(_box);
+            var script = _box.GetComponent<BoxScript>();
+            script.Break();
+            isBreakable = false;
+            //Destroy(_box);
             //Debug.Log("Destroy!");
         }
         /*else if (isPickable && action != 0.0f)
