@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -149,5 +150,10 @@ public class PlayerMovement : MonoBehaviour
     public float getStamina()
     {
         return _stamina;
+    }
+
+    public float getStaminaMax()
+    {
+        return staminaMax;
     }
 }
