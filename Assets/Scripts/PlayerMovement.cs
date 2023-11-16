@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float runMultiplier = 2.0f;
     [SerializeField] private GameObject shotgun;
+    [SerializeField] private float staminaMax = 5.0f;
+    [SerializeField] private float exhaustThreshold = 2.0f;
+    private float _stamina;
+    private bool _isExhausted;
     private SpriteRenderer _spriteRenderer;
     private SpriteRenderer _shotgunSpriteRenderer;
     private Rigidbody2D _rigidBody2D;
@@ -22,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _shotgunSpriteRenderer = shotgun.GetComponent<SpriteRenderer>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
+        _stamina = staminaMax;
+        _isExhausted = false;
     }
 
     // Update is called once per frame
@@ -67,15 +73,81 @@ public class PlayerMovement : MonoBehaviour
         // moving section
         // move right
         if (Input.GetAxis("Horizontal") > 0)
-            transform.position += transform.right * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+        {
+            if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
+            {
+                transform.position += transform.right * speed * runMultiplier * Time.deltaTime;
+                _stamina = Mathf.Max(0, _stamina - Time.deltaTime);
+                if (_stamina < Time.deltaTime)
+                {
+                    _isExhausted = true;
+                }
+            }
+            else
+            {
+                transform.position += transform.right * speed * Time.deltaTime;
+                _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
+            }
+        }
         // move left
         else if (Input.GetAxis("Horizontal") < 0)
-            transform.position += -transform.right * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+            if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
+            {
+                transform.position += -transform.right * speed * runMultiplier * Time.deltaTime;
+                _stamina = Mathf.Max(0, _stamina - Time.deltaTime);
+                if (_stamina < Time.deltaTime)
+                {
+                    _isExhausted = true;
+                }
+            }
+            else
+            {
+                transform.position += -transform.right * speed * Time.deltaTime;
+                _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
+            }
         // move up
-        if (Input.GetAxis("Vertical") > 0 && onLadder)
-            transform.position += transform.up * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+        else if (Input.GetAxis("Vertical") > 0 && onLadder)
+            if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
+            {
+                transform.position += transform.up * speed * runMultiplier * Time.deltaTime;
+                _stamina = Mathf.Max(0, _stamina - Time.deltaTime);
+                if (_stamina < Time.deltaTime)
+                {
+                    _isExhausted = true;
+                }
+            }
+            else
+            {
+                transform.position += transform.up * speed * Time.deltaTime;
+                _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
+            }
         // move down
         else if (Input.GetAxis("Vertical") < 0 && onLadder)
-            transform.position += -transform.up * ((isRunning ? speed * runMultiplier : speed) * Time.deltaTime);
+            if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
+            {
+                transform.position += -transform.up * speed * runMultiplier * Time.deltaTime;
+                _stamina = Mathf.Max(0, _stamina - Time.deltaTime);
+                if (_stamina < Time.deltaTime)
+                {
+                    _isExhausted = true;
+                }
+            }
+            else
+            {
+                transform.position += -transform.up * speed * Time.deltaTime;
+                _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
+            }
+        // standing
+        else
+            _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
+        if (_stamina > exhaustThreshold)
+        {
+            _isExhausted = false;
+        }
+    }
+
+    public float getStamina()
+    {
+        return _stamina;
     }
 }

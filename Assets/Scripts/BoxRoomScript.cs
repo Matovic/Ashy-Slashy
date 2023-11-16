@@ -17,12 +17,11 @@ public class BoxRoomScript : MonoBehaviour
             if (i == keyIndex)
             {
                 // TODO: add key
-                boxScripts[i].itemPrefab = keyPrefab;
+                boxScripts[i].setItemPrefab(keyPrefab);
                 continue;
             }
-            boxScripts[i].itemPrefab = ammoPrefab;
+            boxScripts[i].setItemPrefab(ammoPrefab);
         }
-        Debug.Log(boxScripts.Length);
     }
 
 }

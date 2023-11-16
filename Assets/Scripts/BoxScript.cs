@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoxScript : MonoBehaviour
 {
-    [SerializeField] public GameObject itemPrefab;
+    [SerializeField] GameObject itemPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +22,10 @@ public class BoxScript : MonoBehaviour
     {
         GameObject.Instantiate(itemPrefab, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
+    }
+
+    public void setItemPrefab(GameObject prefab)
+    {
+        itemPrefab = prefab;
     }
 }
