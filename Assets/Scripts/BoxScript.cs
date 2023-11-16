@@ -2,21 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxScript : MonoBehaviour
+public class BoxScript : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject itemPrefab;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Break()
     {
@@ -27,5 +15,10 @@ public class BoxScript : MonoBehaviour
     public void setItemPrefab(GameObject prefab)
     {
         itemPrefab = prefab;
+    }
+
+    void IInteractable.interact(GameObject player)
+    {
+        this.Break();
     }
 }
