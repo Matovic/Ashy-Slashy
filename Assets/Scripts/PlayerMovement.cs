@@ -10,22 +10,18 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float runMultiplier = 2.0f;
-    [SerializeField] private GameObject shotgun;
     [SerializeField] private float staminaMax = 5.0f;
     [SerializeField] private float exhaustThreshold = 2.0f;
     private float _stamina;
     private bool _isExhausted;
     private SpriteRenderer _spriteRenderer;
-    private SpriteRenderer _shotgunSpriteRenderer;
     private Rigidbody2D _rigidBody2D;
-    public bool hasShotgun = false;
     public bool onLadder = false;
     
     // Start is called before the first frame update
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _shotgunSpriteRenderer = shotgun.GetComponent<SpriteRenderer>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _stamina = staminaMax;
         _isExhausted = false;
@@ -36,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         // for running we use "jump" button - space bar
-        var isRunning = Input.GetAxis("Jump") > 0 ? true : false;
+        var isRunning = Input.GetAxis("Jump") > 0;
         
         // rotate player based on the horizontal key  
         var flipX = _spriteRenderer.flipX;
@@ -62,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
         //speed = Math.Abs(run - 1.0f) < 0.1 ? 5.0f : 2.0f;
         
         _spriteRenderer.flipX = flipX;
-        if(hasShotgun) _shotgunSpriteRenderer.flipX = flipX;
         
         if (onLadder)
         {
@@ -147,12 +142,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public float getStamina()
+    public float GetStamina()
     {
         return _stamina;
     }
 
-    public float getStaminaMax()
+    public float GetStaminaMax()
     {
         return staminaMax;
     }

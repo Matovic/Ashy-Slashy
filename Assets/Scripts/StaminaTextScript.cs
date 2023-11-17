@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class StaminaTextScript : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    private PlayerMovement playerScript;
-    private TextMeshProUGUI tmp;
+    [SerializeField] private GameObject player;
+    private PlayerMovement _playerScript;
+    private TextMeshProUGUI _tmp;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        tmp = gameObject.GetComponent<TextMeshProUGUI>();
-        playerScript = player.GetComponent<PlayerMovement>();
+        _tmp = gameObject.GetComponent<TextMeshProUGUI>();
+        _playerScript = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        tmp.text = playerScript.getStamina().ToString("F2") + " / " + playerScript.getStaminaMax().ToString();
+        _tmp.text = _playerScript.GetStamina().ToString("F2") + " / " + _playerScript.GetStaminaMax().ToString();
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Ammo
   - Pickable
   - Interactable
+  - Usable
   layers:
   - Default
   - TransparentFX

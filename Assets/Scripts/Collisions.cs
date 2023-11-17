@@ -9,19 +9,18 @@ public class Collisions : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerActionController playerActionController;
-    private PickUp _pickUp;
+    private Inventory _inventory;
 
     private void Start()
     {
-        _pickUp = GameObject.FindGameObjectWithTag("Ammo").GetComponent<PickUp>();
+        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ammo"))
         {
-            //GameObject o;
-            _pickUp = collision.gameObject.GetComponent<PickUp>();
-            _pickUp.DrawAmmos(collision.gameObject);
+            Destroy(collision.gameObject);
+            _inventory.IncrementBullets();
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -36,7 +35,7 @@ public class Collisions : MonoBehaviour
         {
             //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
             var interactable = collision.gameObject.GetComponent<IInteractable>();
-            interactable.interact(player);
+            interactable.Interact(player);
             //playerActionController.isBreakable = true;
             //PlayerActionController.SetGameObject("Box", collision.gameObject);
         }

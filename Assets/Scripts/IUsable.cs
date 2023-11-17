@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IUsable
 {
-    public void use(GameObject player);
+    public void Use(GameObject player);
 }

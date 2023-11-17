@@ -18,6 +18,6 @@ public class StaminaScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        img.fillAmount = playerScript.getStamina() / playerScript.getStaminaMax();
+        img.fillAmount = playerScript.GetStamina() / playerScript.GetStaminaMax();
     }
 }

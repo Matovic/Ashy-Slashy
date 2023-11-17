@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class BoxRoomScript : MonoBehaviour
 {
-    [SerializeField] GameObject ammoPrefab;
-    [SerializeField] GameObject keyPrefab;
+    [SerializeField] private GameObject ammoPrefab;
+    [SerializeField] private GameObject keyPrefab;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         BoxScript[] boxScripts = gameObject.transform.GetComponentsInChildren<BoxScript>();
         int keyIndex = Random.Range(0, boxScripts.Length);
@@ -17,10 +17,10 @@ public class BoxRoomScript : MonoBehaviour
             if (i == keyIndex)
             {
                 // TODO: add key
-                boxScripts[i].setItemPrefab(keyPrefab);
+                boxScripts[i].SetItemPrefab(keyPrefab);
                 continue;
             }
-            boxScripts[i].setItemPrefab(ammoPrefab);
+            boxScripts[i].SetItemPrefab(ammoPrefab);
         }
     }
 

@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class BoxScript : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject itemPrefab;
+    [SerializeField] private GameObject itemPrefab;
 
     public void Break()
     {
-        GameObject.Instantiate(itemPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        var o = gameObject;
+        Instantiate(itemPrefab, o.transform.position, o.transform.rotation);
         Destroy(gameObject);
     }
 
-    public void setItemPrefab(GameObject prefab)
+    public void SetItemPrefab(GameObject prefab)
     {
         itemPrefab = prefab;
     }
 
-    void IInteractable.interact(GameObject player)
+    void IInteractable.Interact(GameObject player)
     {
-        this.Break();
+        Break();
     }
 }

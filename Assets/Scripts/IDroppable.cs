@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDroppable
 {
-    public void drop(GameObject player);
+    public void Drop(GameObject player);
 }

@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyScript : MonoBehaviour, IInteractable
 {
-    public void interact(GameObject player)
+    public void Interact(GameObject player)
     {
-        // TODO: add to player inventory
+        var inventory = player.GetComponent<Inventory>();
+        // add to player inventory
+        inventory.SetItemBool("key", true);
+        // destroy game object
         Destroy(gameObject);
     }
 }
