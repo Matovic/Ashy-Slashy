@@ -193,4 +193,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8afc48c0720bee0a9e4e22a56f77cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  walkingAnimation: {fileID: 1448066901106251596}
+  speed: 4

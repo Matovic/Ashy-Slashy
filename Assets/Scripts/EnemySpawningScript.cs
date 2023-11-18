@@ -29,7 +29,8 @@ public class EnemySpawningScript : MonoBehaviour
         {
             generating = true;
             var transform1 = transform;
-            Instantiate(enemyPrefab, transform1.position, transform1.rotation);
+            var enemy = Instantiate(enemyPrefab, transform1.position, transform1.rotation);
+            enemy.transform.SetParent(gameObject.transform);
             generating = false;
             ++_generatedEnemies;
         }

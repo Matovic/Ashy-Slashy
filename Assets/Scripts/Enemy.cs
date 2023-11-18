@@ -4,35 +4,50 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private Animator walkingAnimation;
+    [SerializeField] private float speed;
     private GameObject _player;
     private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigidBody2D;
+    private bool _onLadder = false;
     
     // Start is called before the first frame update
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        walkingAnimation = GetComponent<Animator>();   
     }
 
     // Update is called once per frame
     private void Update()
     {
-        var target = _player.transform;
-        Vector3 forwardAxis = new Vector3 (0, 0, -2);
+        if (_onLadder)
+        {
+            _rigidBody2D.gravityScale = 0;
+            _rigidBody2D.velocity = Vector3.zero;
+        }
+        else _rigidBody2D.gravityScale = 1;
         
-        Vector3 displacement = target.position - transform.position;
-        displacement = displacement.normalized;
+        var playerTransform = _player.transform;
+        //Vector3 forwardAxis = new Vector3 (0, 0, -2);
         
-        var distance = Vector2.Distance(target.position, transform.position);
-        Debug.Log($"{displacement}");
+        Vector3 difference = playerTransform.position - transform.position;
+        difference = difference.normalized;
+
+        if (difference.x < 0) _spriteRenderer.flipX = true;
+
+        var distance = Vector2.Distance(playerTransform.position, transform.position);
+        //Debug.Log($"{difference}");
         if (distance > 1.0f) {
-            transform.position += (displacement * speed * Time.deltaTime);
+            transform.position += (difference * (speed * Time.deltaTime));
+            walkingAnimation.SetInteger("Animate", 2);
         } 
         /*else{
             //do whatever the enemy has to do with the player
         }
-        
+
         transform.LookAt(target.position, forwardAxis);
         Debug.DrawLine(transform.position, target.position);
         transform.eulerAngles = new Vector3(0, 0, -transform.eulerAngles.z);
@@ -52,5 +67,14 @@ public class Enemy : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+    }
+    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladders"))
+        {
+            _onLadder = true;
+        }
+        else _onLadder = false;
     }
 }
