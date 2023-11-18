@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShotgunScript : MonoBehaviour, IInteractable, IUsable, IDroppable
 {
+    [SerializeField] private GameObject bulletPrefab;
     private SpriteRenderer _playerSpriteRenderer, _spriteRenderer;
     private Inventory _inventory;
     private GameObject _player;
+    private bool _useAxisInUse = false;
     private void Start()
     {
         _playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
@@ -21,8 +21,18 @@ public class ShotgunScript : MonoBehaviour, IInteractable, IUsable, IDroppable
             return;
         _spriteRenderer.flipX = _playerSpriteRenderer.flipX;
         var throwAway = Input.GetAxis("Throw away");
+        var use = Input.GetButtonDown("Use");//Input.GetAxis("Use");
         if (throwAway != 0.0f) Drop();
-
+        if (use) Use();
+    }
+    
+    private void Use()
+    {
+        if (_inventory.GetBullets() == 0) return;
+        var transform1 = transform;
+        var bullet = Instantiate(bulletPrefab, transform1.position, transform1.rotation, transform1);
+        bullet.transform.SetParent(null);
+        _inventory.DecrementBullets();
     }
     
     private void Drop()
@@ -57,6 +67,6 @@ public class ShotgunScript : MonoBehaviour, IInteractable, IUsable, IDroppable
 
     public void Use(GameObject player)
     {
-        // TODO: shoot if theres ammo in inventory
+        // TODO
     }
 }

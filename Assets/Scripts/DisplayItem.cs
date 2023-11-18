@@ -9,15 +9,15 @@ public class DisplayItem : MonoBehaviour
     protected Inventory _inventory;
     protected bool isFull = false;
 
-    public void DrawItem()
+    protected void DrawItem()
     {
         var transform1 = transform;
         _gameObj = Instantiate(item, transform1.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), transform1);
     }
-    
-    public void DestroyItem()
+
+    protected void DestroyItem()
     {
-        Debug.Log($"{_gameObj.name} destroyed!");
+        //Debug.Log($"{_gameObj.name} destroyed!");
         Destroy(_gameObj);
     }
     
