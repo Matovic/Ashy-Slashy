@@ -7,14 +7,14 @@ public class DisplayKeyScript : DisplayItem
     // Update is called once per frame
     private void Update()
     {
-        if (!isFull && _inventory.GetItemBool("key"))
+        if (!IsFull && Inventory.GetItemBool("key"))
         {
-            isFull = true;
+            IsFull = true;
             DrawItem();
         }
-        else if (isFull && !_inventory.GetItemBool("key"))
+        else if (IsFull && !Inventory.GetItemBool("key"))
         {
-            isFull = false;
+            IsFull = false;
             DestroyItem();
         }
     }

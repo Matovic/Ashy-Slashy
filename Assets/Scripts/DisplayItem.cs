@@ -6,8 +6,8 @@ public class DisplayItem : MonoBehaviour
 {
     [SerializeField] private GameObject item;
     private GameObject _gameObj;
-    protected Inventory _inventory;
-    protected bool isFull = false;
+    protected Inventory Inventory;
+    protected bool IsFull = false;
 
     protected void DrawItem()
     {
@@ -24,6 +24,6 @@ public class DisplayItem : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        Inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 }

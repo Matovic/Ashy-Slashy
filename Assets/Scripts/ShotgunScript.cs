@@ -7,7 +7,7 @@ public class ShotgunScript : MonoBehaviour, IInteractable, IUsable, IDroppable
     private SpriteRenderer _playerSpriteRenderer, _spriteRenderer;
     private Inventory _inventory;
     private GameObject _player;
-    private bool _useAxisInUse = false;
+    //private bool _useAxisInUse = false;
     private void Start()
     {
         _playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();

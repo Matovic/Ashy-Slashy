@@ -11,6 +11,8 @@ TagManager:
   - Interactable
   - Usable
   - Bullet
+  - Enemy
+  - Door
   layers:
   - Default
   - TransparentFX
