@@ -6,7 +6,7 @@ public class BoxScript : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject itemPrefab;
 
-    public void Break()
+    private void Break()
     {
         var o = gameObject;
         Instantiate(itemPrefab, o.transform.position, o.transform.rotation);

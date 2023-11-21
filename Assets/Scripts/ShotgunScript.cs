@@ -67,6 +67,6 @@ public class ShotgunScript : MonoBehaviour, IInteractable, IUsable, IDroppable
 
     public void Use(GameObject player)
     {
-        // TODO
+        
     }
 }

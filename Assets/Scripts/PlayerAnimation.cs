@@ -13,8 +13,8 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         generalAnimator = general.GetComponent<Animator>();
-        helmetAnimator = Helmet.GetComponent<Animator>();
-        ordinaryAnimator = Ordinary.GetComponent<Animator>();   
+        //helmetAnimator = Helmet.GetComponent<Animator>();
+        //ordinaryAnimator = Ordinary.GetComponent<Animator>();   
         _startTime = System.DateTime.UtcNow;
     }
 
