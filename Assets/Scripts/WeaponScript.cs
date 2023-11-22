@@ -1,22 +1,22 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotgunScript : MonoBehaviour, IInteractable, IUsable, IDroppable
+public class WeaponScript : MonoBehaviour, IInteractable, IUsable, IDroppable
 {
+    protected SpriteRenderer _spriteRenderer, _playerSpriteRenderer;
+    protected Inventory _inventory;
     [SerializeField] private GameObject bulletPrefab;
-
-    private SpriteRenderer _playerSpriteRenderer, _spriteRenderer;
-    private Inventory _inventory;
-    private GameObject _player;
-    //private bool _useAxisInUse = false;
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        _playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
-        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        _playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (!_inventory.GetItemBool("shotgun"))
             return;

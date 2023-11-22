@@ -7,15 +7,20 @@ public class DisplayWeaponSlot : DisplayItem
    // Update is called once per frame
     private void Update()
     {
-        if (!IsFull && Inventory.GetItemBool("shotgun"))
+        switch (IsFull)
         {
-            IsFull = true;
-            DrawItem();
-        }
-        else if (IsFull && !Inventory.GetItemBool("shotgun"))
-        {
-            IsFull = false;
-            DestroyItem();
+            case false when Inventory.GetItemBool("shotgun"):
+                IsFull = true;
+                DrawItem("shotgun");
+                break;
+            case false when Inventory.GetItemBool("trap"):
+                IsFull = true;
+                DrawItem("trap");
+                break;
+            case true when !Inventory.GetItemBool("weapon"):
+                IsFull = false;
+                DestroyItem();
+                break;
         }
     }
 }

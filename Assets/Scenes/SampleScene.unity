@@ -6523,6 +6523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 787869119759047657, guid: 05b1c1d16118126db883b7e3b14b2d96, type: 3}
+  trap: {fileID: 3386629401259064509, guid: f2108e98dfc5020328f3bbcf222e67fa, type: 3}
 --- !u!1001 &748073300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7220,6 +7221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 750931550819232084, guid: 3f2a820822dad12ffa7dcdac61828b78, type: 3}
+  trap: {fileID: 0}
 --- !u!1 &1369725848
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class TrapScript : MonoBehaviour, IInteractable
     [SerializeField] private Sprite opened, closed;
     private Inventory _inventory;
     private SpriteRenderer _spriteRenderer;
-    private bool _isUsable = false;
+    private bool _isUsable = true;
 
     private void Start()
     {
@@ -43,7 +43,7 @@ public class TrapScript : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         //check inventory
-        if (_inventory.GetItemBool("trap")) return;
+        if (_inventory.GetItemBool("weapon")) return;
         //var playerMovement = player.GetComponent<PlayerMovement>();
         // attach to player
         Transform transformItem;

@@ -15,11 +15,21 @@ public class Collisions : MonoBehaviour
     {
         _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log($"Game Over!");
+        }
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ammo"))
         {
             Destroy(collision.gameObject);
+            Debug.Log($"{name}");
             _inventory.IncrementBullets();
         }
     }

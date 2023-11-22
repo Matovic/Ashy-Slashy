@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public List<bool> isFull;
     public List<GameObject> slots = new List<GameObject>();
     [SerializeField] private int countBullets = 0;
-    private bool _hasKey = false, _hasShotgun = false, _hasTrap = false;
+    private bool _hasKey = false, _hasShotgun = false, _hasTrap = false, _hasWeapon = false;
 
     public void SetItemBool(string item, bool status)
     {
@@ -18,9 +18,11 @@ public class Inventory : MonoBehaviour
                 break;
             case "shotgun":
                 _hasShotgun = status;
+                _hasWeapon = status;
                 break;
             case "trap":
                 _hasTrap = status;
+                _hasWeapon = status;
                 break;
         }
     }
@@ -31,7 +33,8 @@ public class Inventory : MonoBehaviour
         {
             "key" => _hasKey,
             "trap" => _hasTrap,
-            _ => _hasShotgun
+            "shotgun" => _hasShotgun,
+            _ => _hasWeapon
         };
     }
     
