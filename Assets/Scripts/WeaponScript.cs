@@ -52,7 +52,7 @@ public class WeaponScript : MonoBehaviour, IInteractable
     public virtual void Interact(GameObject player)
     {
         //check inventory
-        if (Inventory.GetItemBool(Type)) return;
+        if (Inventory.GetItemBool(Type) || Inventory.GetItemBool("weapon")) return;
         // attach to player
         Transform transformItem;
         (transformItem = transform).SetParent(player.transform);
