@@ -30,6 +30,7 @@ public class TrapScript : WeaponScript
     
     public override void Interact(GameObject player)
     {
+        if (Inventory.GetItemBool("weapon")) return;
         _isUsable = false;
         ChangeState(opened);
         base.Interact(player);

@@ -8,19 +8,23 @@ public class Collisions : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerActionController playerActionController;
+    //[SerializeField] private PlayerActionController playerActionController;
     private Inventory _inventory;
+    private GameObject _gameOverScreenUI;
 
     private void Start()
     {
         _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        _gameOverScreenUI = GameObject.FindGameObjectWithTag("GameOverUI");
+        _gameOverScreenUI.SetActive(false);
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log($"Game Over!");
+            //Destroy(gameObject);
+            _gameOverScreenUI.SetActive(true);
         }
     }
     
@@ -68,9 +72,9 @@ public class Collisions : MonoBehaviour
         {
             playerMovement.onLadder = false;
         }
-        else if (collision.gameObject.name == "Shotgun")
+        /*else if (collision.gameObject.name == "Shotgun")
         {
             playerActionController.isPickable = false;
-        }
+        }*/
     }
 }

@@ -28,9 +28,10 @@ public class LockedBoxScript : MonoBehaviour, IInteractable
         var rotation = transform1.rotation;
         // destroy locked box
         Destroy(this);
-        // make a shotgun
-        Instantiate(treasure, position, rotation);
         // make a open box
         Instantiate(openBox, position, rotation);
+        // make a shotgun
+        position.z = -1;
+        Instantiate(treasure, position, rotation);
     }
 }

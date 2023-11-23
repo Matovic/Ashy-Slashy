@@ -6,6 +6,7 @@ public class WeaponScript : MonoBehaviour, IInteractable
 {
     protected SpriteRenderer SpriteRenderer;
     private SpriteRenderer _playerSpriteRenderer;
+    private BoxCollider2D _boxCollider;
     protected Inventory Inventory;
     protected string Type;
     //[SerializeField] private GameObject bulletPrefab;
@@ -13,6 +14,7 @@ public class WeaponScript : MonoBehaviour, IInteractable
     protected void Start()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
         Inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         _playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
     }
@@ -37,6 +39,7 @@ public class WeaponScript : MonoBehaviour, IInteractable
                 Drop();
                 break;
         }
+        _boxCollider.enabled = true;
     }
 
     protected virtual void Drop()
@@ -47,12 +50,14 @@ public class WeaponScript : MonoBehaviour, IInteractable
         Inventory.SetItemBool(Type, false);
         // change tag
         transform.gameObject.tag = "Interactable"; 
+        
+        _boxCollider.enabled = true;
     }
 
     public virtual void Interact(GameObject player)
     {
         //check inventory
-        if (Inventory.GetItemBool(Type) || Inventory.GetItemBool("weapon")) return;
+        if (Inventory.GetItemBool("weapon")) return;
         // attach to player
         Transform transformItem;
         (transformItem = transform).SetParent(player.transform);
@@ -60,6 +65,8 @@ public class WeaponScript : MonoBehaviour, IInteractable
         // add to inventory
         Inventory.SetItemBool(Type, true);
         // change tag
-        transform.gameObject.tag = "Usable"; 
+        transform.gameObject.tag = "Usable";
+        
+        _boxCollider.enabled = false;
     }
 }

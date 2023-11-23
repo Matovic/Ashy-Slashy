@@ -19,5 +19,6 @@ public class ShotgunScript : WeaponScript
         var bullet = Instantiate(bulletPrefab, transform1.position, transform1.rotation, transform1);
         bullet.transform.SetParent(null);
         Inventory.DecrementBullets();
+        base.Use();
     }
 }
