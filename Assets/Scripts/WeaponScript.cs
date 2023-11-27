@@ -24,7 +24,29 @@ public class WeaponScript : MonoBehaviour, IInteractable
     {
         if (!Inventory.GetItemBool(Type))
             return;
-        SpriteRenderer.flipX = _playerSpriteRenderer.flipX;
+        if(Type != "machete")
+            SpriteRenderer.flipX = _playerSpriteRenderer.flipX;
+        else
+        {
+            SpriteRenderer.flipY = !_playerSpriteRenderer.flipX;
+            if (SpriteRenderer.flipY)
+            {
+                var transformItem = transform;
+                transformItem.localPosition = new Vector3(0.5f, 1.2f, -1.0f);
+                Quaternion localRotation = default;
+                localRotation.eulerAngles = new Vector3(0.0f, 0.0f, 245.0f);
+                transformItem.localRotation = localRotation;
+                //transformRotation.z = 245.0f;
+            }
+            else
+            {
+                var transformItem = transform;
+                transformItem.localPosition = new Vector3(-0.5f, 1.2f, -1.0f);
+                Quaternion localRotation = default;
+                localRotation.eulerAngles = new Vector3(0.0f, 0.0f, 285.0f);
+                transformItem.localRotation = localRotation;
+            }
+        }
         var throwAway = Input.GetAxis("Throw away");
         var use = Input.GetButtonDown("Use");
         if (throwAway != 0.0f) Drop();
