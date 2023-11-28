@@ -10,6 +10,16 @@ public class WeaponScript : MonoBehaviour, IInteractable
     protected Inventory Inventory;
     protected string Type;
     //[SerializeField] private GameObject bulletPrefab;
+
+    protected void SetPosition(Vector3 localPosition, Vector3 eulerAngles)
+    {
+        var transformItem = transform;
+        transformItem.localPosition = localPosition;
+        Quaternion localRotation = default;
+        localRotation.eulerAngles = eulerAngles; 
+        transformItem.localRotation = localRotation;
+    }
+        
     // Start is called before the first frame update
     protected void Start()
     {
@@ -26,25 +36,16 @@ public class WeaponScript : MonoBehaviour, IInteractable
             return;
         if(Type != "machete")
             SpriteRenderer.flipX = _playerSpriteRenderer.flipX;
-        else
+        else if (SpriteRenderer.flipY != !_playerSpriteRenderer.flipX)
         {
             SpriteRenderer.flipY = !_playerSpriteRenderer.flipX;
             if (SpriteRenderer.flipY)
             {
-                var transformItem = transform;
-                transformItem.localPosition = new Vector3(0.5f, 1.2f, -1.0f);
-                Quaternion localRotation = default;
-                localRotation.eulerAngles = new Vector3(0.0f, 0.0f, 245.0f);
-                transformItem.localRotation = localRotation;
-                //transformRotation.z = 245.0f;
+                SetPosition(new Vector3(0.6f, 1.2f, -1.0f), new Vector3(0.0f, 0.0f, 245.0f));
             }
             else
             {
-                var transformItem = transform;
-                transformItem.localPosition = new Vector3(-0.5f, 1.2f, -1.0f);
-                Quaternion localRotation = default;
-                localRotation.eulerAngles = new Vector3(0.0f, 0.0f, 285.0f);
-                transformItem.localRotation = localRotation;
+                SetPosition(new Vector3(-0.6f, 1.2f, -1.0f), new Vector3(0.0f, 0.0f, 285.0f));
             }
         }
         var throwAway = Input.GetAxis("Throw away");

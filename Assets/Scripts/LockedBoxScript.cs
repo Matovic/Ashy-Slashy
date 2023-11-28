@@ -5,14 +5,8 @@ using UnityEngine;
 
 public class LockedBoxScript : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject treasure;
+    [SerializeField] private List<GameObject> treasures;
     [SerializeField] private GameObject openBox;
-
-    private void Start()
-    {
-        //treasure.transform.localScale = new Vector3(1, 1, 1);
-        //openBox.transform.localScale = new Vector3(1, 1, 1);
-    }
 
     public void Interact(GameObject player)
     {
@@ -32,6 +26,7 @@ public class LockedBoxScript : MonoBehaviour, IInteractable
         Instantiate(openBox, position, rotation);
         // make a shotgun
         position.z = -1;
-        Instantiate(treasure, position, rotation);
+        foreach (var treasure in treasures)
+            Instantiate(treasure, position, rotation);
     }
 }

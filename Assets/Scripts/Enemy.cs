@@ -12,9 +12,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rigidBody2D;
     private bool _onLadder = false;*/
 
-    private Transform player;
-    private NavMeshAgent agent;
-    private SpriteRenderer spriteRenderer;
+    private Transform _player;
+    private NavMeshAgent _agent;
+    private SpriteRenderer _spriteRenderer;
     
     // Start is called before the first frame update
     private void Start()
@@ -23,23 +23,16 @@ public class Enemy : MonoBehaviour
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _player = GameObject.FindGameObjectWithTag("Player");
         walkingAnimation = GetComponent<Animator>();   */
-        agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player").transform;
-        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        _agent = GetComponent<NavMeshAgent>();
+        _player = GameObject.FindWithTag("Player").transform;
+        _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        agent.SetDestination(player.position);
-        if (agent.velocity.x >= 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else
-        {
-            spriteRenderer.flipX = true;
-        }
+        _agent.SetDestination(_player.position);
+        _spriteRenderer.flipX = !(_agent.velocity.x >= 0);
         /*if (_onLadder)
         {
             _rigidBody2D.gravityScale = 0;

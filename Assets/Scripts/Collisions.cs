@@ -8,7 +8,6 @@ public class Collisions : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement playerMovement;
-    //[SerializeField] private PlayerActionController playerActionController;
     private Inventory _inventory;
     private GameObject _gameOverScreenUI;
 
@@ -33,7 +32,7 @@ public class Collisions : MonoBehaviour
         if (collision.CompareTag("Ammo"))
         {
             Destroy(collision.gameObject);
-            Debug.Log($"{name}");
+            //Debug.Log($"{name}");
             _inventory.IncrementBullets();
         }
     }

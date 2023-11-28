@@ -8,13 +8,14 @@ public class ButtonNewGame : MonoBehaviour
 
     private Button _button;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(TaskOnClick);
     }
 
-    void TaskOnClick(){
+    private void TaskOnClick()
+    {
         Debug.Log ("You have clicked the button!");
     }
 }

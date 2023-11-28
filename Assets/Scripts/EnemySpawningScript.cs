@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawningScript : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    private int _max = 13;
+    private const int Max = 13;
     private const float StartInterval = 30.0f, EnemyInterval = 1.0f;
     private bool _isGenerating = false;
     private int _generatedEnemies = 0;
@@ -27,7 +27,7 @@ public class EnemySpawningScript : MonoBehaviour
     private IEnumerator Generate()
     {
         _isGenerating = true;
-        while(_generatedEnemies < _max)
+        while(_generatedEnemies < Max)
         {
             var ts = System.DateTime.UtcNow - _startTime;
             if (ts.Seconds < StartInterval) continue;
