@@ -8,12 +8,10 @@ public class MainMenu : MonoBehaviour
 {
     public void NewGame()
     {
-        Debug.Log("NewGame");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Scenes/SampleScene");
     }
     public void ExitGame()
     {
-        Debug.Log("ExitGame");
         Application.Quit();
     }
 }

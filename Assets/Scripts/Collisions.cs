@@ -23,7 +23,7 @@ public class Collisions : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
             gameOverScreenUI.SetActive(true);
         }
     }
