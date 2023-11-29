@@ -17,6 +17,10 @@ public class DisplayWeaponSlot : DisplayItem
                 IsFull = true;
                 DrawItem("trap");
                 break;
+            case false when Inventory.GetItemBool("machete"):
+                IsFull = true;
+                DrawItem("machete");
+                break;
             case true when !Inventory.GetItemBool("weapon"):
                 IsFull = false;
                 DestroyItem();

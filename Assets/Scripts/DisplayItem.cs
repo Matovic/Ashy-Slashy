@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DisplayItem : MonoBehaviour
 {
-    [SerializeField] private GameObject item, trap;
+    [FormerlySerializedAs("item")] [SerializeField] private GameObject shotgun;
+    [SerializeField] private GameObject trap, machete;
     private GameObject _gameObj;
     protected Inventory Inventory;
     protected bool IsFull = false;
@@ -12,15 +14,19 @@ public class DisplayItem : MonoBehaviour
     protected void DrawItem(string type)
     {
         var transform1 = transform;
-        var item1 = item;
-        if (type == "trap") item1 = trap;
+        var item1 = type switch
+        {
+            "trap" => trap,
+            "machete" => machete,
+            _ => shotgun
+        };
         _gameObj = Instantiate(item1, transform1.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), transform1);
     }
     
     protected void DrawItem()
     {
         var transform1 = transform;
-        _gameObj = Instantiate(item, transform1.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), transform1);
+        _gameObj = Instantiate(shotgun, transform1.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), transform1);
     }
 
     protected void DestroyItem()

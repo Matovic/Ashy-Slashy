@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Collisions : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement playerMovement;
     private Inventory _inventory;
-    private GameObject _gameOverScreenUI;
+    [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
 
     private void Start()
     {
         _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        _gameOverScreenUI = GameObject.FindGameObjectWithTag("GameOverUI");
-        _gameOverScreenUI.SetActive(false);
+        //_gameOverScreenUI = GameObject.FindGameObjectWithTag("GameOverUI");
+        //_gameOverScreenUI.SetActive(false);
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
@@ -23,7 +24,7 @@ public class Collisions : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             //Destroy(gameObject);
-            _gameOverScreenUI.SetActive(true);
+            gameOverScreenUI.SetActive(true);
         }
     }
     
