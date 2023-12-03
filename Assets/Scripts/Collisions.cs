@@ -11,7 +11,7 @@ public class Collisions : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
-
+    [SerializeField] CameraScript cameraScript;
     private void Start()
     {
         _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -35,6 +35,11 @@ public class Collisions : MonoBehaviour
             Destroy(collision.gameObject);
             //Debug.Log($"{name}");
             _inventory.IncrementBullets();
+        }
+        if (collision.CompareTag("Room"))
+        {
+            cameraScript.SetRoomTriggerTransform(collision.transform);
+            cameraScript.SetInRoom(true);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -71,6 +76,10 @@ public class Collisions : MonoBehaviour
         if (collision.CompareTag("Ladders"))
         {
             playerMovement.onLadder = false;
+        }
+        if (collision.CompareTag("Room"))
+        {
+            cameraScript.SetInRoom(false);
         }
         /*else if (collision.gameObject.name == "Shotgun")
         {
