@@ -127,9 +127,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7098885928317748833}
   - component: {fileID: 3890158015101328565}
-  m_Layer: 0
+  - component: {fileID: 4328347908460634039}
+  m_Layer: 3
   m_Name: Light 2D
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,8 +184,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0010999441, y: -0.08560002, z: 0}
-    m_Extent: {x: 3.0040998, y: 1.2584, z: 0}
+    m_Center: {x: -0.00014996529, y: -0.07729995, z: 0}
+    m_Extent: {x: 2.99775, y: 1.2507, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -199,6 +200,41 @@ MonoBehaviour:
   - {x: 2.5, y: -0.83500004, z: 0}
   - {x: 2.5, y: 0.66499996, z: 0}
   - {x: -2.5, y: 0.66499996, z: 0}
+--- !u!70 &4328347908460634039
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7495951820026886111}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0085477745, y: -0.08106769}
+  m_Size: {x: 5.9908233, y: 2.4905353}
+  m_Direction: 1
 --- !u!1001 &1877742560645620140
 PrefabInstance:
   m_ObjectHideFlags: 0

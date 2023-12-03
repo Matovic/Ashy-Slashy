@@ -9,6 +9,7 @@ public class Collisions : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] LayerMask lightLayerMask;
     private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
     [SerializeField] CameraScript cameraScript;
@@ -18,7 +19,19 @@ public class Collisions : MonoBehaviour
         //_gameOverScreenUI = GameObject.FindGameObjectWithTag("GameOverUI");
         //_gameOverScreenUI.SetActive(false);
     }
-    
+
+    private void Update()
+    {
+        if (Physics2D.GetRayIntersection(new Ray(player.transform.position, Vector3.forward), Mathf.Infinity, lightLayerMask)) 
+        {
+            Debug.Log("Raycast HIT");
+        }
+        else
+        {
+            Debug.Log("Raycast miss");
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))

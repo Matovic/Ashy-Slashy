@@ -15,11 +15,12 @@ TagManager:
   - Door
   - GameOverUI
   - Room
+  - Light
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Light
   - Water
   - UI
   - 
