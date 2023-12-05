@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (_player == null) Destroy(gameObject);
         _agent.SetDestination(_player.position);
         _spriteRenderer.flipX = !(_agent.velocity.x >= 0);
         /*if (_onLadder)

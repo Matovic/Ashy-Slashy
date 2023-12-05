@@ -11,6 +11,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerTransform == null) return;
         if (inRoom)
         {
             lerpRatio = Mathf.Min(1.0f, lerpRatio + Time.deltaTime);
