@@ -8,6 +8,7 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         _soundtrack = GetComponent<AudioSource>();
-        _soundtrack.volume = PlayerPrefs.GetFloat("volume") == 0.0f ? 1.00f : PlayerPrefs.GetFloat("volume");
+        _soundtrack.mute = PlayerPrefs.GetInt("mute") == 1; 
+        _soundtrack.volume = PlayerPrefs.GetFloat("volume");
     }
 }

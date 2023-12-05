@@ -15,11 +15,7 @@ namespace Main_Menu
             _slider = GetComponent<Slider>();
             _slider.onValueChanged.AddListener((newValue) =>
             {
-                sliderText.text = newValue.ToString("0 %");
-            });
-        
-            _slider.onValueChanged.AddListener((newValue) =>
-            {
+                sliderText.text = newValue.ToString("Audio: 0 %");
                 soundtrack.volume = newValue;
             });
         }
