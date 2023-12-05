@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemySpawningScript : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    private const int Max = 13;
-    private const float StartInterval = 30.0f, EnemyInterval = 1.0f;
+    private int _max; 
+    private float _enemyInterval;
+    private const float StartInterval = 30.0f;
     private bool _isGenerating = false;
     private int _generatedEnemies = 0;
     private System.DateTime _startTime;
@@ -14,6 +15,12 @@ public class EnemySpawningScript : MonoBehaviour
     private void Start()
     {
         _startTime = System.DateTime.UtcNow;
+        _max = PlayerPrefs.GetInt("maxEnemySpawn");
+        _enemyInterval = PlayerPrefs.GetFloat("enemyInterval");
+        // Only for testing when PlayerPrefs not saved
+        if (_max != 0) return;
+        _max = 13;
+        _enemyInterval = 1.0f;
     }
 
     private void Update()
@@ -22,16 +29,17 @@ public class EnemySpawningScript : MonoBehaviour
         var ts = System.DateTime.UtcNow - _startTime;
         if (ts.Seconds < 1 || ts.Seconds % StartInterval != 0) return;
         StartCoroutine(Generate());
+        Debug.Log($"max:{_max}, interval:${_enemyInterval}");
     }
 
     private IEnumerator Generate()
     {
         _isGenerating = true;
-        while(_generatedEnemies < Max)
+        while(_generatedEnemies < _max)
         {
             var ts = System.DateTime.UtcNow - _startTime;
             if (ts.Seconds < StartInterval) continue;
-            if (ts.Seconds % EnemyInterval != 0) continue;
+            if (ts.Seconds % _enemyInterval != 0) continue;
             
             var transform1 = transform;
             var enemy = Instantiate(enemyPrefab, transform1.position, transform1.rotation);

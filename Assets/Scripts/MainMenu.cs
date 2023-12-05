@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject newGameScreen;
     public void NewGame()
     {
-        SceneManager.LoadScene("Scenes/SampleScene");
+        gameObject.SetActive(false);
+        newGameScreen.SetActive(true);
     }
     public void ExitGame()
     {
