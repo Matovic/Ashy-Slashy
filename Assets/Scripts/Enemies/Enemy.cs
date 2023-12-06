@@ -1,40 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+namespace Enemies
 {
-    /*[SerializeField] private Animator walkingAnimation;
+    public class Enemy : MonoBehaviour
+    {
+        /*[SerializeField] private Animator walkingAnimation;
     [SerializeField] private float speed;
     private GameObject _player;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidBody2D;
     private bool _onLadder = false;*/
 
-    private Transform _player;
-    private NavMeshAgent _agent;
-    private SpriteRenderer _spriteRenderer;
+        private Transform _player;
+        private NavMeshAgent _agent;
+        private SpriteRenderer _spriteRenderer;
     
-    // Start is called before the first frame update
-    private void Start()
-    {
-        /*_spriteRenderer = GetComponent<SpriteRenderer>();
+        // Start is called before the first frame update
+        private void Start()
+        {
+            /*_spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _player = GameObject.FindGameObjectWithTag("Player");
         walkingAnimation = GetComponent<Animator>();   */
-        _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.FindWithTag("Player").transform;
-        _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-    }
+            _agent = GetComponent<NavMeshAgent>();
+            _player = GameObject.FindWithTag("Player").transform;
+            _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (_player == null) Destroy(gameObject);
-        _agent.SetDestination(_player.position);
-        _spriteRenderer.flipX = !(_agent.velocity.x >= 0);
-        /*if (_onLadder)
+        // Update is called once per frame
+        private void Update()
+        {
+            if (_player == null) Destroy(gameObject);
+            _agent.SetDestination(_player.position);
+            _spriteRenderer.flipX = !(_agent.velocity.x >= 0);
+            /*if (_onLadder)
         {
             _rigidBody2D.gravityScale = 0;
             _rigidBody2D.velocity = Vector3.zero;
@@ -63,24 +63,24 @@ public class Enemy : MonoBehaviour
         Debug.DrawLine(transform.position, target.position);
         transform.eulerAngles = new Vector3(0, 0, -transform.eulerAngles.z);
         transform.position -= transform.TransformDirection(Vector2.up) * speed * Time.deltaTime; */
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Door"))
-        {
-            Destroy(collision.gameObject);
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            if (collision.gameObject.CompareTag("Door"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
-    }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Bullet"))
+            {
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+            }
+        }
     
-    /*private void OnTriggerStay2D(Collider2D collision)
+        /*private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ladders"))
         {
@@ -88,4 +88,5 @@ public class Enemy : MonoBehaviour
         }
         else _onLadder = false;
     }*/
+    }
 }

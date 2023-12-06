@@ -15,7 +15,7 @@ namespace Main_Menu
             _toggle = GetComponent<Toggle>();
             _toggle.onValueChanged.AddListener((newValue) =>
             {
-                var status = newValue == true ? "on" : "off";
+                var status = newValue ? "on" : "off";
                 audioText.text = $"Audio: {status}";
                 soundtrack.mute = !newValue;
             });
