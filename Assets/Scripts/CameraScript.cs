@@ -20,7 +20,7 @@ public class CameraScript : MonoBehaviour
         {
             lerpRatio = Mathf.Max(0.0f, lerpRatio - Time.deltaTime);
         }
-        transform.position = Vector3.Lerp(playerTransform.position + Vector3.back, roomTriggerTransform.position, lerpRatio);
+        transform.position = Vector3.Lerp(playerTransform.position + Vector3.back, roomTriggerTransform.position + Vector3.back, lerpRatio);
     }
 
     public void SetRoomTriggerTransform(Transform rTT)
