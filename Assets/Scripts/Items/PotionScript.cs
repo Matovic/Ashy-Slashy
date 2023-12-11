@@ -1,38 +1,59 @@
+using System;
 using Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PotionScript : MonoBehaviour, IInteractable, IUsable
+namespace Items
 {
-    [SerializeField] protected Inventory inventory;
-    [SerializeField] private PlayerMovement playerMovement;
-    protected string type;
-
-    public void Interact(GameObject player)
+    public class PotionScript : MonoBehaviour, IInteractable, IUsable
     {
-        // add to inventory
-        inventory.SetItemBool(type, true);
-        // change tag
-        gameObject.tag = "Usable";
-    }
+        private GameObject _player;
+        private Inventory inventory;
+        private PlayerMovement playerMovement;
+        private BoxCollider2D _boxCollider;
+        [SerializeField] private string type;
+        private int Count = 0;
 
-    public void Use(GameObject player)
-    {
-        switch (type)
+        private void Start()
         {
-            case "growth":
-                if (playerMovement.GetIsShrinked())
-                {
-                    playerMovement.SetIsShrinked(false);
-                }
-                break;
-            case "shrink":
-                if (!playerMovement.GetIsShrinked())
-                {
-                    playerMovement.SetIsShrinked(true);
-                }
-                break;
+            _player = GameObject.FindWithTag("Player");
+            inventory = _player.GetComponent<Inventory>();
+            playerMovement = _player.GetComponent<PlayerMovement>();
+            _boxCollider = GetComponent<BoxCollider2D>();
+        }
+
+        public string GetPotionType()
+        {
+            return type;
+        }
+
+        public void Interact(GameObject player)
+        {
+            inventory.AddPotion(type);
+            // change tag
+            var o = gameObject;
+            o.tag = "Usable";
+            transform.position = new Vector3(0.0f, 0.0f, 100.0f);
+            //Destroy(o);
+            //_boxCollider.enabled = false;
+        }
+
+        public void Use(GameObject player)
+        {
+            switch (type)
+            {
+                case "growth":
+                    if (playerMovement.GetIsShrinked())
+                    {
+                        playerMovement.SetIsShrinked(false);
+                    }
+                    break;
+                case "shrink":
+                    if (!playerMovement.GetIsShrinked())
+                    {
+                        playerMovement.SetIsShrinked(true);
+                    }
+                    break;
+            }
         }
     }
 }

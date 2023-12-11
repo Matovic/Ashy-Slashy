@@ -7,7 +7,7 @@ namespace Player
         private System.DateTime _startTime;
     
         [SerializeField] private GameObject general;
-        [SerializeField] private Animator generalAnimator;
+        private Animator generalAnimator;
     
         // Start is called before the first frame update
         private void Start()

@@ -1,14 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
     public class EnemySpawningScript : MonoBehaviour
     {
         [SerializeField] private GameObject enemyPrefab;
-        private int _max;// = 13;
-        private float _enemyInterval;// = 1.0f;
-        private const float StartInterval = 30.0f;
+        [FormerlySerializedAs("StartInterval")] [SerializeField] private float startInterval = 30.0f;
+        private int _max;
+        private float _enemyInterval;
         private bool _isGenerating = false;
         private int _generatedEnemies = 0;
         private System.DateTime _startTime;
@@ -33,7 +34,7 @@ namespace Enemies
         {
             if (_isGenerating) return;
             var ts = System.DateTime.UtcNow - _startTime;
-            if (ts.Seconds < 1 || ts.Seconds % StartInterval != 0) return;
+            if (ts.Seconds < 1 || ts.Seconds % startInterval != 0) return;
             StartCoroutine(Generate());
             //Debug.Log($"max:{_max}, interval:${_enemyInterval}");
         }
@@ -44,7 +45,7 @@ namespace Enemies
             while(_generatedEnemies < _max)
             {
                 var ts = System.DateTime.UtcNow - _startTime;
-                if (ts.Seconds < StartInterval) continue;
+                if (ts.Seconds < startInterval) continue;
                 if (ts.Seconds % _enemyInterval != 0) continue;
             
                 var transform1 = transform;

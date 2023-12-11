@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 321138626689330327}
   - component: {fileID: 536079046957770201}
-  - component: {fileID: 8822319413486569359}
+  - component: {fileID: 3197279046814216}
   m_Layer: 0
   m_Name: Shrinking Potion
   m_TagString: Interactable
@@ -163,7 +163,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6106436, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8822319413486569359
+--- !u!114 &3197279046814216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +172,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3612332094018850510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d91f55547f2f04d99c528b8d2f74f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ded23addbf738543b153b891e93a123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  playerMovement: {fileID: 0}
+  type: shrink
