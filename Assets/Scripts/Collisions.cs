@@ -11,6 +11,9 @@ public class Collisions : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] LayerMask lightLayerMask;
+    [SerializeField] private float darknessTimeLimit;
+    [SerializeField] AudioSource gameOverAudio;
+    private float darknessTime;
     private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
     [SerializeField] private CameraScript cameraScript;
@@ -23,20 +26,28 @@ public class Collisions : MonoBehaviour
 
     private void Update()
     {
-        /*if (Physics2D.GetRayIntersection(new Ray(player.transform.position, Vector3.forward), Mathf.Infinity, lightLayerMask)) 
+        if (Physics2D.GetRayIntersection(new Ray(player.transform.position, Vector3.forward), Mathf.Infinity, lightLayerMask)) 
         {
-            Debug.Log("Raycast HIT");
+            darknessTime = 0;
         }
         else
         {
-            Debug.Log("Raycast miss");
-        }*/
+            darknessTime += Time.deltaTime;
+        }
+        if (darknessTime >= darknessTimeLimit)
+        {
+            gameOverAudio.Play();
+            Destroy(gameObject);
+            gameOverScreenUI.SetActive(true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            gameOverAudio.Play();
+            gameObject.SetActive(false);
             Destroy(gameObject);
             gameOverScreenUI.SetActive(true);
         }
@@ -99,5 +110,15 @@ public class Collisions : MonoBehaviour
         {
             playerActionController.isPickable = false;
         }*/
+    }
+
+    public float GetDarknessTime()
+    {
+        return darknessTime;
+    }
+
+    public float GetDarknessTimeLimit()
+    {
+        return darknessTimeLimit;
     }
 }
