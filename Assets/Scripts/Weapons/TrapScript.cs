@@ -10,7 +10,7 @@ namespace Weapons
         private new void Start()
         {
             base.Start();
-            Type = "trap";
+            type = "trap";
         }
 
         private void ChangeState(Sprite state)

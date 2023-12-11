@@ -9,7 +9,7 @@ namespace Weapons
         private new void Start()
         {
             base.Start();
-            Type = "shotgun";
+            type = "shotgun";
         }
     
         protected override void Use()

@@ -23,15 +23,18 @@ namespace Weapons
         private new void Start()
         {
             base.Start();
-            Type = "machete";
+            type = "machete";
         }
 
         private void AttackWait()
         {
-            var originalLocalPosition = transform.localPosition;
-            var localPosition = new Vector3(originalLocalPosition.x, 1.2f, originalLocalPosition.z);
-            var eulerAngles = new Vector3(0.0f, 0.0f, SpriteRenderer.flipY ? 245.0f : 285.0f);
-            SetPosition(localPosition, eulerAngles);
+            if (gameObject.CompareTag("Usable"))
+            {
+                var originalLocalPosition = transform.localPosition;
+                var localPosition = new Vector3(originalLocalPosition.x, 1.2f, originalLocalPosition.z);
+                var eulerAngles = new Vector3(0.0f, 0.0f, SpriteRenderer.flipY ? 245.0f : 285.0f);
+                SetPosition(localPosition, eulerAngles);
+            }
             _isAttacking = false;
         }
 
@@ -51,7 +54,7 @@ namespace Weapons
         {
             if (Inventory.GetItemBool("weapon")) return;
             base.Interact(player);
-            SetPosition(new Vector3(-0.6f, 1.2f, -1.0f), new Vector3(0.0f, 0.0f, 285.0f));
+            SetPosition(new Vector3(-0.6f, 1.2f, -0.5f), new Vector3(0.0f, 0.0f, 285.0f));
         }
     }
 }

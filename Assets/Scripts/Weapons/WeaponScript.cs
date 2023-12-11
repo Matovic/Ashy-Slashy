@@ -9,7 +9,7 @@ namespace Weapons
         private SpriteRenderer _playerSpriteRenderer;
         private BoxCollider2D _boxCollider;
         protected Inventory Inventory;
-        protected string Type;
+        protected string type;
         //[SerializeField] private GameObject bulletPrefab;
 
         protected void SetPosition(Vector3 localPosition, Vector3 eulerAngles)
@@ -33,20 +33,20 @@ namespace Weapons
         // Update is called once per frame
         private void Update()
         {
-            if (!Inventory.GetItemBool(Type))
+            if (!Inventory.GetItemBool(type))
                 return;
-            if(Type != "machete")
+            if(type != "machete")
                 SpriteRenderer.flipX = _playerSpriteRenderer.flipX;
             else if (SpriteRenderer.flipY != !_playerSpriteRenderer.flipX)
             {
                 SpriteRenderer.flipY = !_playerSpriteRenderer.flipX;
                 if (SpriteRenderer.flipY)
                 {
-                    SetPosition(new Vector3(0.6f, 1.2f, -1.0f), new Vector3(0.0f, 0.0f, 245.0f));
+                    SetPosition(new Vector3(0.6f, 1.2f, -0.5f), new Vector3(0.0f, 0.0f, 245.0f));
                 }
                 else
                 {
-                    SetPosition(new Vector3(-0.6f, 1.2f, -1.0f), new Vector3(0.0f, 0.0f, 285.0f));
+                    SetPosition(new Vector3(-0.6f, 1.2f, -0.5f), new Vector3(0.0f, 0.0f, 285.0f));
                 }
             }
             var throwAway = Input.GetAxis("Throw away");
@@ -57,7 +57,7 @@ namespace Weapons
 
         protected virtual void Use()
         {
-            switch (Type)
+            switch (type)
             {
                 case "trap":
                     Drop();
@@ -68,10 +68,10 @@ namespace Weapons
 
         protected virtual void Drop()
         {
-            // detach to player
+            // detach from player
             transform.parent = null;
             // remove from inventory
-            Inventory.SetItemBool(Type, false);
+            Inventory.SetItemBool(type, false);
             // change tag
             transform.gameObject.tag = "Interactable"; 
         
@@ -85,11 +85,11 @@ namespace Weapons
             // attach to player
             Transform transformItem;
             (transformItem = transform).SetParent(player.transform);
-            transformItem.localPosition = new Vector3(0.0f, 0.5f, -1.0f);
+            transformItem.localPosition = new Vector3(0.0f, 0.5f, -0.5f);
             // add to inventory
-            Inventory.SetItemBool(Type, true);
+            Inventory.SetItemBool(type, true);
             // change tag
-            transform.gameObject.tag = "Usable";
+            gameObject.tag = "Usable";
         
             _boxCollider.enabled = false;
         }

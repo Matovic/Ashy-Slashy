@@ -1,12 +1,26 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+
+public class Potion
+{
+    public string potionType;
+    public int count;
+
+    public Potion(string type, int c)
+    {
+        this.potionType = type;
+        this.count = c;
+    }
+}
 
 namespace Player
 {
     public class Inventory : MonoBehaviour
     {
+
         public List<bool> isFull;
-        public List<GameObject> slots = new List<GameObject>();
+        private List<Potion> potions = new List<Potion>();
         [SerializeField] private int countBullets = 0;
         private bool _hasKey = false, _hasShotgun = false, _hasTrap = false, _hasMachete = false, _hasWeapon = false;
 
@@ -55,6 +69,18 @@ namespace Player
         public int GetBullets()
         {
             return countBullets;
+        }
+
+        public void AddPotion(string type)
+        {
+            var p = potions.Find(x => x.potionType == type);
+            if (p != null) p.count++;
+            else potions.Add(new Potion(type, 1));
+        }
+
+        public List<Potion> GetPotions() 
+        { 
+            return potions; 
         }
     }
 }

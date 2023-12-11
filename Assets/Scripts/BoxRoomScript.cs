@@ -4,31 +4,42 @@ using Items;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
+public struct BoxItem
+{
+    public GameObject itemPrefab;
+    public int count;
+}
+
 public class BoxRoomScript : MonoBehaviour
 {
     [SerializeField] private GameObject ammoPrefab;
-    [SerializeField] private GameObject keyPrefab;
-    [SerializeField] private GameObject trapPrefab;
+    [SerializeField] private List<BoxItem> boxItems;
+
     // Start is called before the first frame update
     private void Start()
     {
         BoxScript[] boxScripts = gameObject.transform.GetComponentsInChildren<BoxScript>();
-        int keyIndex = Random.Range(0, boxScripts.Length);
-        int trapIndex = Random.Range(0, boxScripts.Length);
-        // ensure that keyIndex != trapIndex
-        while(keyIndex == trapIndex) trapIndex = Random.Range(0, boxScripts.Length);
+
+        // initialize specific box items
+        foreach (BoxItem item in boxItems) 
+        {
+            for (int i = 1; i <= item.count; i++)
+            {
+                int boxNumber = Random.Range(0, boxScripts.Length);
+                while (boxScripts[boxNumber].GetItemPrefab() != null)
+                {
+                    boxNumber = Random.Range(0, boxScripts.Length);
+                }
+                boxScripts[boxNumber].SetItemPrefab(item.itemPrefab);
+            }
+        }
+
+        // fill remaining boxes with ammo
         for (int i = 0; i < boxScripts.Length; i++)
         {
-            if (i == keyIndex)
+            if (boxScripts[i].GetItemPrefab() != null)
             {
-                // TODO: add key
-                boxScripts[i].SetItemPrefab(keyPrefab);
-                continue;
-            }
-            
-            if (i == trapIndex)
-            {
-                boxScripts[i].SetItemPrefab(trapPrefab);
                 continue;
             }
             boxScripts[i].SetItemPrefab(ammoPrefab);
