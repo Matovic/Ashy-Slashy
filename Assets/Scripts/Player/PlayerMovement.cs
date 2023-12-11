@@ -16,6 +16,7 @@ namespace Player
         private bool _isShrinked = false;
         private Vector3 originalScale;
         [SerializeField] float scaleShrinkFactor;
+        private string orientation;
     
         // Start is called before the first frame update
         private void Start()
@@ -42,7 +43,7 @@ namespace Player
             var direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
             // for running we use "jump" button - space bar
             var isRunning = Input.GetAxis("Jump") > 0;
-        
+
             // rotate player based on the horizontal key  
             var flipX = _spriteRenderer.flipX;
             flipX = direction.x switch
@@ -51,9 +52,9 @@ namespace Player
                 > 0 => false,
                 _ => flipX
             };
-        
+
             _spriteRenderer.flipX = flipX;
-        
+
             if (onLadder)
             {
                 _rigidBody2D.gravityScale = 0;
@@ -65,6 +66,7 @@ namespace Player
             // move right
             if (Input.GetAxis("Horizontal") > 0)
             {
+                orientation = "right";
                 if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
                 {
                     transform.position += transform.right * speed * runMultiplier * Time.deltaTime;
@@ -82,6 +84,8 @@ namespace Player
             }
             // move left
             else if (Input.GetAxis("Horizontal") < 0)
+            {
+                orientation = "left";
                 if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
                 {
                     transform.position += -transform.right * speed * runMultiplier * Time.deltaTime;
@@ -96,8 +100,11 @@ namespace Player
                     transform.position += -transform.right * speed * Time.deltaTime;
                     _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
                 }
+            }
             // move up
             else if (Input.GetAxis("Vertical") > 0 && onLadder)
+            {
+                orientation = "up";
                 if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
                 {
                     transform.position += transform.up * speed * runMultiplier * Time.deltaTime;
@@ -112,8 +119,11 @@ namespace Player
                     transform.position += transform.up * speed * Time.deltaTime;
                     _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
                 }
+            }
             // move down
             else if (Input.GetAxis("Vertical") < 0 && onLadder)
+            {
+                orientation = "down";
                 if (isRunning && _stamina > Time.deltaTime && _stamina - Time.deltaTime >= 0 && !_isExhausted)
                 {
                     transform.position += -transform.up * speed * runMultiplier * Time.deltaTime;
@@ -128,6 +138,7 @@ namespace Player
                     transform.position += -transform.up * speed * Time.deltaTime;
                     _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
                 }
+            }
             // standing
             else
                 _stamina = Mathf.Min(staminaMax, _stamina + Time.deltaTime);
@@ -155,6 +166,11 @@ namespace Player
         public bool GetIsShrinked()
         {
             return _isShrinked;
+        }
+
+        public string GetOrientation()
+        {
+            return orientation;
         }
     }
 }

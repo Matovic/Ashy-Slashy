@@ -22,7 +22,7 @@ namespace Player
         public List<bool> isFull;
         private List<Potion> potions = new List<Potion>();
         [SerializeField] private int countBullets = 0;
-        private bool _hasKey = false, _hasShotgun = false, _hasTrap = false, _hasMachete = false, _hasWeapon = false;
+        private bool _hasKey = false, _hasShotgun = false, _hasTrap = false, _hasMachete = false, _hasWeapon = false, _hasHeadlamp = false;
 
         public void SetItemBool(string item, bool status)
         {
@@ -43,6 +43,9 @@ namespace Player
                     _hasMachete = status;
                     _hasWeapon = status;
                     break;
+                case "headlamp":
+                    _hasHeadlamp = status;
+                    break;
             }
         }
     
@@ -54,6 +57,7 @@ namespace Player
                 "trap" => _hasTrap,
                 "shotgun" => _hasShotgun,
                 "machete" => _hasMachete,
+                "headlamp" => _hasHeadlamp,
                 _ => _hasWeapon
             };
         }
