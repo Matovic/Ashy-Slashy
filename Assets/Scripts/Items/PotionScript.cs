@@ -31,9 +31,9 @@ namespace Items
             inventory.AddPotion(type);
             // change tag
             var o = gameObject;
-            o.tag = "Usable";
-            transform.position = new Vector3(0.0f, 0.0f, 100.0f);
-            //Destroy(o);
+            //o.tag = "Usable";
+            //transform.position = new Vector3(0.0f, 0.0f, 100.0f);
+            Destroy(o);
             //_boxCollider.enabled = false;
         }
 

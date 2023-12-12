@@ -23,7 +23,8 @@ namespace Player
         public List<bool> isFull;
         private readonly List<Potion> potions = new List<Potion>();
         [SerializeField] private int countBullets = 0;
-        private bool _hasKey = false, _hasShotgun = false, _hasTrap = false, _hasMachete = false, _hasWeapon = false, _hasHeadlamp = false;
+        private bool _hasKey = false, _hasShotgun = false, _hasTrap = false, _hasMachete = false, 
+            _hasWeapon = false, _hasHeadlamp = false, _hasFuel = false;
         public void SetItemBool(string item, bool status)
         {
             switch (item)
@@ -46,6 +47,9 @@ namespace Player
                 case "headlamp":
                     _hasHeadlamp = status;
                     break;
+                case "fuel":
+                    _hasFuel = status;
+                    break;
             }
         }
     
@@ -58,6 +62,7 @@ namespace Player
                 "shotgun" => _hasShotgun,
                 "machete" => _hasMachete,
                 "headlamp" => _hasHeadlamp,
+                "fuel" => _hasFuel,
                 _ => _hasWeapon
             };
         }
@@ -87,17 +92,6 @@ namespace Player
             --p.Count;
             if (p.Count == 0) potions.Remove(p);
         }
-        
-        /*public void AddPotion(PotionScript o)
-        {
-            potions.Add(o);
-        }
-        
-        public void RemovePotion(PotionScript o)
-        {
-            potions.Remove(o);
-        }*/
-
         public List<Potion> GetPotions() 
         { 
             return potions; 

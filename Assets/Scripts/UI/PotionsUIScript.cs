@@ -18,12 +18,7 @@ namespace UI
     {
         [SerializeField] Inventory inventory;
         [SerializeField] List<PotionUI> potionsUI;
-        //private BoxCollider2D _boxCollider;
-    
-        void Start()
-        {
-            //_boxCollider = GetComponent<BoxCollider2D>();
-        }
+
         void Update()
         {
             var potions = inventory.GetPotions();
