@@ -4191,7 +4191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4623c0e9b478ba8f9e08e56b502f632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  darkness: {fileID: 1701056080}
 --- !u!1 &76679994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4485,7 +4484,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &104380150
 RectTransform:
@@ -4664,8 +4663,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2111523327}
-        m_TargetAssemblyTypeName: PauseScreen, Assembly-CSharp
+      - m_Target: {fileID: 181930145}
+        m_TargetAssemblyTypeName: UI.PauseScreen, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -5195,6 +5194,7 @@ GameObject:
   - component: {fileID: 181930143}
   - component: {fileID: 181930142}
   - component: {fileID: 181930141}
+  - component: {fileID: 181930145}
   m_Layer: 5
   m_Name: Pause Canvas
   m_TagString: Untagged
@@ -5263,7 +5263,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &181930144
 RectTransform:
@@ -5285,6 +5285,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &181930145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181930140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fb5fac669c30c048091d7dc8bdd172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsScreen: {fileID: 1972318218}
+  pauseBackground: {fileID: 2111523323}
 --- !u!1001 &182276645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23037,7 +23051,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1001 &346934943
 PrefabInstance:
@@ -23886,7 +23900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7455962459b96b46ac175691ad21899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1847671572}
+  _playerScript: {fileID: 1847671573}
+  _tmp: {fileID: 595520852}
 --- !u!1 &597324000
 GameObject:
   m_ObjectHideFlags: 0
@@ -25823,8 +25838,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2111523327}
-        m_TargetAssemblyTypeName: PauseScreen, Assembly-CSharp
+      - m_Target: {fileID: 181930145}
+        m_TargetAssemblyTypeName: UI.PauseScreen, Assembly-CSharp
         m_MethodName: Settings
         m_Mode: 1
         m_Arguments:
@@ -29204,7 +29219,7 @@ Transform:
   m_GameObject: {fileID: 1733174559}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.6, y: 10.32, z: 1}
+  m_LocalPosition: {x: 41.6, y: 10.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29310,7 +29325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2bcd5f8dfcf704e9b23448311cfd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1847671572}
+  playerScript: {fileID: 1847671573}
+  img: {fileID: 1805702125}
 --- !u!1 &1810129487
 GameObject:
   m_ObjectHideFlags: 0
@@ -29491,7 +29507,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1847671572 stripped
 GameObject:
@@ -29648,7 +29664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c20caffb84aa1aee4f1271e8bd0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseScreenUI: {fileID: 2111523327}
+  pauseScreenUI: {fileID: 0}
 --- !u!212 &1847671599 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4361182636781176293, guid: 3f342161fd81307439ae403e7fbe32ae, type: 3}
@@ -30068,7 +30084,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1898245644
 GameObject:
@@ -30105,7 +30121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -270.2, y: 18.599915}
+  m_AnchoredPosition: {x: -270.2, y: 18.599854}
   m_SizeDelta: {x: 29.1131, y: 93.6791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1898245646
@@ -31724,8 +31740,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2111523327}
-        m_TargetAssemblyTypeName: PauseScreen, Assembly-CSharp
+      - m_Target: {fileID: 181930145}
+        m_TargetAssemblyTypeName: UI.PauseScreen, Assembly-CSharp
         m_MethodName: ReturnMainMenu
         m_Mode: 1
         m_Arguments:
@@ -31850,8 +31866,6 @@ GameObject:
   - component: {fileID: 2111523324}
   - component: {fileID: 2111523326}
   - component: {fileID: 2111523325}
-  - component: {fileID: 2111523327}
-  - component: {fileID: 2111523329}
   m_Layer: 5
   m_Name: PauseBackground
   m_TagString: Untagged
@@ -31871,8 +31885,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 125515344}
   - {fileID: 2122383711}
+  - {fileID: 125515344}
   - {fileID: 1010707367}
   - {fileID: 2088685727}
   m_Father: {fileID: 181930144}
@@ -31920,42 +31934,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111523323}
   m_CullTransparentMesh: 1
---- !u!114 &2111523327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111523323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6fb5fac669c30c048091d7dc8bdd172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsScreen: {fileID: 1972318218}
---- !u!223 &2111523329
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111523323}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &2117433382
 GameObject:
   m_ObjectHideFlags: 0
@@ -32085,8 +32063,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2111523327}
-        m_TargetAssemblyTypeName: PauseScreen, Assembly-CSharp
+      - m_Target: {fileID: 181930145}
+        m_TargetAssemblyTypeName: UI.PauseScreen, Assembly-CSharp
         m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:

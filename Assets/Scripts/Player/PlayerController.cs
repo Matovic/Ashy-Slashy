@@ -21,31 +21,6 @@ namespace Player
             inventory = _player.GetComponent<Inventory>();
             playerMovement = _player.GetComponent<PlayerMovement>();
         }
-
-        private void Update()
-        {
-            var pauseButtonDown = Input.GetButtonDown("Cancel");
-            if (pauseButtonDown)
-            {
-                if (pauseScreenUI.GameObject().activeSelf)
-                    pauseScreenUI.ContinueGame();
-                else pauseScreenUI.PauseGame();
-            }
-            /*var potions = inventory.GetPotions();
-            var usePotion1 = Input.GetButtonDown("Fire1");
-            var usePotion2 = Input.GetButtonDown("Fire2");
-            if (usePotion1)
-            {
-                const string type = "growth";
-                UsePotion(potions, type);
-            }
-            if (usePotion2)
-            {
-                const string type = "shrink";
-                UsePotion(potions, type);
-            }*/
-        }
-
         private void UsePotion(List<Potion> potions, string type)
         {
             Debug.Log($"potions.{type}:{potions.Count}");

@@ -6,6 +6,8 @@ namespace UI
     public class PauseScreen : MonoBehaviour
     {
         [SerializeField] private GameObject settingsScreen;
+        [SerializeField] private GameObject pauseBackground;
+
         public void RestartGame()
         {
             Time.timeScale = 1.0f;
@@ -13,13 +15,13 @@ namespace UI
         }
         public void Settings()
         {
-            gameObject.SetActive(false);
+            pauseBackground.SetActive(false);
             settingsScreen.SetActive(true);
         }
         public void ContinueGame()
         {
             Time.timeScale = 1.0f;
-            gameObject.SetActive(false);
+            pauseBackground.SetActive(false);
         }
     
         public void ReturnMainMenu()
@@ -31,7 +33,18 @@ namespace UI
         public void PauseGame()
         {
             Time.timeScale = 0.0f;
-            gameObject.SetActive(true);
+            pauseBackground.SetActive(true);
+        }
+
+        void Update()
+        {
+            var pauseButtonDown = Input.GetButtonDown("Cancel");
+            if (pauseButtonDown)
+            {
+                if (pauseBackground.activeSelf)
+                    ContinueGame();
+                else PauseGame();
+            }
         }
     }
 }
