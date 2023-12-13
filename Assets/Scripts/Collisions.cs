@@ -14,6 +14,7 @@ public class Collisions : MonoBehaviour
     [SerializeField] private float darknessTimeLimit;
     [SerializeField] AudioSource gameOverAudio;
     private float darknessTime;
+    private bool interactedRecently = false;
     private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
     [SerializeField] private CameraScript cameraScript;
@@ -40,6 +41,7 @@ public class Collisions : MonoBehaviour
             Destroy(gameObject);
             gameOverScreenUI.SetActive(true);
         }
+        if (Input.GetAxis("Submit") == 0) interactedRecently = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -75,11 +77,12 @@ public class Collisions : MonoBehaviour
         {
             playerMovement.onLadder = true;
         }
-        else if (collision.CompareTag("Interactable") && action != 0.0f)
+        else if (collision.CompareTag("Interactable") && action != 0.0f && !interactedRecently)
         {
             //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
             var interactable = collision.gameObject.GetComponent<IInteractable>();
             interactable.Interact(player);
+            interactedRecently = true;
             //playerActionController.isBreakable = true;
             //PlayerActionController.SetGameObject("Box", collision.gameObject);
         }
