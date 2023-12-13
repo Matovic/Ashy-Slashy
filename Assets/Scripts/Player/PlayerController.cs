@@ -14,6 +14,7 @@ namespace Player
         private PlayerMovement playerMovement;
         private bool allPotions = false;
         private const uint MaxPotions = 2;
+        public bool HasWeapon { get; private set; } 
 
         private void Start()
         {
@@ -37,8 +38,14 @@ namespace Player
                 case false:
                     return;
             }
+            HasWeapon = false;
             var usePotion = Input.GetButtonDown("Fire1");
             if (!usePotion) return;
+            if (inventory.GetItemBool("weapon"))
+            {
+                HasWeapon = true;
+                return;
+            }
             Use(pShrink != null && pGrowth.Count == pShrink.Count ? "shrink" : "growth");
         }
 
