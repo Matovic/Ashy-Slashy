@@ -20,7 +20,8 @@ namespace UI
             MacheteText = "This should have been a chainsaw, but we are out of budget.", 
             LampText = "Finally, some light.",
             FuelText = "This should be in my car.",
-            PotionWeaponText = "I can not use a potion with a weapon.";
+            PotionWeaponText = "I can not use a potion with a weapon.",
+            PotionNotAll = "I need to collect all the potions! Otherwise, I will be stuck.";
 
         private static readonly string
             DarknessText1 = "I should not be here without a light.",
@@ -50,7 +51,7 @@ namespace UI
         private Collisions playerCollisions;
         private PlayerController playerController;
         private List<InventoryItem> inventoryItems = new List<InventoryItem>();
-        private bool growthPickUp, shrinkPickUp, ammoPickUp, darknessTextDisplayed, hasWeapon;
+        private bool growthPickUp, shrinkPickUp, ammoPickUp, darknessTextDisplayed, hasWeapon, notCollectedAll;
         private void Start()
         {
             textPopUp.enabled = false;
@@ -98,6 +99,12 @@ namespace UI
                 StartCoroutine(ShowMessage(Dialogues.PotionWeaponText, delay));
                 StartCoroutine(TextPause(delay));
             }
+            else if (playerController.NotCollectedAll && !notCollectedAll)
+            {
+                notCollectedAll = true;
+                StartCoroutine(ShowMessage(Dialogues.PotionNotAll, delay));
+                StartCoroutine(TextPause(delay));
+            }
             else foreach (var item in inventoryItems.Where(item => inventory.GetItemBool(item.itemType) && !item.hasBeenPickedUp))
             {
                 item.hasBeenPickedUp = true;
@@ -117,6 +124,7 @@ namespace UI
             yield return new WaitForSeconds(delayTime);
             darknessTextDisplayed = false;
             hasWeapon = false;
+            notCollectedAll = false;
         }
     }
 }

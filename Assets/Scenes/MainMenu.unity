@@ -2367,6 +2367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d911a954220ee2f0e8e0d0f9517f8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slider: {fileID: 0}
   soundtrack: {fileID: 729516981}
   sliderText: {fileID: 883990642}
 --- !u!114 &960150843
@@ -3625,6 +3626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d8843d2d92d4fae82a915f07faa994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _toggle: {fileID: 0}
   soundtrack: {fileID: 729516981}
   audioText: {fileID: 1065403364}
 --- !u!114 &1518584174
@@ -4699,12 +4701,14 @@ MonoBehaviour:
 
     E - use item
 
+    F - use potion
+
     [Enter] - action
 
-    [Space] - sprint
+    [Space]
+    - sprint
 
-    [Escape]
-    - pause'
+    [Escape] - pause'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4767,7 +4771,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -616.3088, y: -146.84608, z: 0, w: 0}
+  m_margin: {x: -616.3088, y: -196.98003, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

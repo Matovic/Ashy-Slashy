@@ -16,6 +16,7 @@ TagManager:
   - GameOverUI
   - Room
   - Light
+  - Car
   layers:
   - Default
   - TransparentFX

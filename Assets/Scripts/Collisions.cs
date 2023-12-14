@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Player;
+using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -15,9 +17,15 @@ public class Collisions : MonoBehaviour
     [SerializeField] AudioSource gameOverAudio;
     private float darknessTime;
     private bool interactedRecently = false;
-    [SerializeField ]private Inventory _inventory;
+    [SerializeField] private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
     [SerializeField] private CameraScript cameraScript;
+    private GameOverScreen _gameOverScript;
+
+    private void Start()
+    {
+        _gameOverScript = gameOverScreenUI.GetComponent<GameOverScreen>();
+    }
 
     private void Update()
     {
@@ -35,6 +43,7 @@ public class Collisions : MonoBehaviour
             gameOverAudio.Play();
             Destroy(gameObject);
             gameOverScreenUI.SetActive(true);
+            _gameOverScript.GameOver();
         }
         // reset interaction 
         if (Input.GetAxis("Submit") == 0) interactedRecently = false;
@@ -48,6 +57,7 @@ public class Collisions : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(gameObject);
             gameOverScreenUI.SetActive(true);
+            _gameOverScript.GameOver();
         }
     }
     
@@ -62,6 +72,12 @@ public class Collisions : MonoBehaviour
         {
             cameraScript.SetRoomTriggerTransform(collision.transform);
             cameraScript.SetInRoom(true);
+        }
+        if (collision.CompareTag("Car") && _inventory.GetItemBool("fuel") && Input.GetAxis("Use") != 0.0f)
+        {
+            Destroy(gameObject);
+            gameOverScreenUI.SetActive(true);
+            _gameOverScript.WinGame();
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
