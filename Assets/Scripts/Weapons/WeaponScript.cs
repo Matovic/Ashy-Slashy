@@ -71,7 +71,6 @@ namespace Weapons
             Inventory.SetItemBool(type, false);
             // change tag
             transform.gameObject.tag = "Interactable"; 
-        
             _boxCollider.enabled = true;
         }
 

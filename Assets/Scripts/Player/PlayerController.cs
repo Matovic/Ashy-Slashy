@@ -28,17 +28,6 @@ namespace Player
             var pShrink = potions.Find(x => x.PotionType == "shrink");
             var fire = Input.GetButtonDown("Fire1");
             NotCollectedAll = false;
-            /*if (fire)
-            {
-                Debug.Log($"pShrink:{pShrink}");
-            }*/
-            /*if (fire && !allPotions && (pShrink == null || pGrowth == null || 
-                                    pShrink is not { Count: 2 } || pGrowth is not { Count: 2 }))
-            {
-                NotCollectedAll = true;
-                return;
-            }*/
-            
             switch (allPotions)
             {
                 case false when pShrink != null && pGrowth != null && 
@@ -53,13 +42,15 @@ namespace Player
                     return;
             }
             HasWeapon = false;
-            if (inventory.GetItemBool("weapon"))
+            switch (fire)
             {
-                HasWeapon = true;
-                return;
+                case true when inventory.GetItemBool("weapon"):
+                    HasWeapon = true;
+                    return;
+                case true:
+                    Use(pShrink != null && pGrowth != null && pGrowth.Count == pShrink.Count ? "shrink" : "growth");
+                    break;
             }
-            if (fire)
-                Use(pShrink != null && pGrowth != null && pGrowth.Count == pShrink.Count ? "shrink" : "growth");
         }
 
         private void Use(string type)

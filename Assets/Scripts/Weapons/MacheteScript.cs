@@ -63,5 +63,10 @@ namespace Weapons
             base.Interact(player);
             SetPosition(new Vector3(-0.6f, 1.2f, -0.5f), new Vector3(0.0f, 0.0f, 285.0f));
         }
+        protected override void Drop()
+        {
+            if (_isAttacking) return;
+            base.Drop();
+        }
     }
 }
