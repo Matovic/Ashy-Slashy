@@ -17,17 +17,11 @@ namespace Enemies
         private void Start()
         {
             _startTime = System.DateTime.UtcNow;
-            //if (!_firstRun) return;
-            //_firstRun = false;
-            //Debug.Log($"1. max:{_max}, enemyInterval:{_enemyInterval}");
             _max = PlayerPrefs.GetInt("maxEnemySpawn");
             _enemyInterval = PlayerPrefs.GetFloat("enemyInterval");
-            //Debug.Log($"2. max:{_max}, enemyInterval:{_enemyInterval}");
-            // Only for testing when PlayerPrefs not saved
             if (_max != 0) return;
             _max = 13;
             _enemyInterval = 1.0f;
-            //Debug.Log($"3. max:{_max}, enemyInterval:{_enemyInterval}");
         }
 
         private void Update()
@@ -36,7 +30,6 @@ namespace Enemies
             var ts = System.DateTime.UtcNow - _startTime;
             if (ts.Seconds < 1 || ts.Seconds % startInterval != 0) return;
             StartCoroutine(Generate());
-            //Debug.Log($"max:{_max}, interval:${_enemyInterval}");
         }
 
         private IEnumerator Generate()

@@ -25,7 +25,7 @@ namespace Items
             Destroy(this);
             // make a open box
             Instantiate(openBox, position, rotation);
-            // make a shotgun
+            // spawn treasures
             position.z -= 1;
             foreach (var treasure in treasures)
                 Instantiate(treasure, position, rotation);

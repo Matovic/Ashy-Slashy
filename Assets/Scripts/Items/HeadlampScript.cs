@@ -15,14 +15,13 @@ public class HeadlampScript : MonoBehaviour, IInteractable
     [SerializeField] SpriteRenderer playerSpriteRenderer;
     [SerializeField] PlayerMovement movement;
     [SerializeField] Inventory inventory;
-    private BoxCollider2D _boxCollider;
+    [SerializeField] private BoxCollider2D _boxCollider;
 
     void Start()
     {
         flashlightOriginalLocalPosition = flashlightTransform.localPosition;
         flashlightFlippedLocalPosition = flashlightTransform.localPosition;
         flashlightFlippedLocalPosition.x = -flashlightOriginalLocalPosition.x;
-        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()

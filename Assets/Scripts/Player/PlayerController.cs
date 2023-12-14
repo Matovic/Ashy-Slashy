@@ -9,19 +9,13 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private Inventory inventory;
-        private GameObject _player;
-        private PlayerMovement playerMovement;
+        [SerializeField] private Inventory inventory;
+        [SerializeField] private GameObject _player;
+        [SerializeField] private PlayerMovement playerMovement;
         private bool allPotions = false;
         private const uint MaxPotions = 2;
-        public bool HasWeapon { get; private set; } 
+        public bool HasWeapon { get; private set; }
 
-        private void Start()
-        {
-            _player = GameObject.FindWithTag("Player");
-            inventory = _player.GetComponent<Inventory>();
-            playerMovement = _player.GetComponent<PlayerMovement>();
-        }
         private void Update()
         {
             var potions = inventory.GetPotions();
@@ -39,14 +33,13 @@ namespace Player
                     return;
             }
             HasWeapon = false;
-            var usePotion = Input.GetButtonDown("Fire1");
-            if (!usePotion) return;
             if (inventory.GetItemBool("weapon"))
             {
                 HasWeapon = true;
                 return;
             }
-            Use(pShrink != null && pGrowth.Count == pShrink.Count ? "shrink" : "growth");
+            if (Input.GetButtonDown("Fire1"))
+                Use(pShrink != null && pGrowth.Count == pShrink.Count ? "shrink" : "growth");
         }
 
         private void Use(string type)

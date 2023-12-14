@@ -10,7 +10,6 @@ namespace Weapons
         private BoxCollider2D _boxCollider;
         protected Inventory Inventory;
         protected string type;
-        //[SerializeField] private GameObject bulletPrefab;
 
         protected void SetPosition(Vector3 localPosition, Vector3 eulerAngles)
         {
@@ -21,7 +20,6 @@ namespace Weapons
             transformItem.localRotation = localRotation;
         }
         
-        // Start is called before the first frame update
         protected void Start()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -30,7 +28,6 @@ namespace Weapons
             _playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         }
 
-        // Update is called once per frame
         private void Update()
         {
             if (!Inventory.GetItemBool(type))

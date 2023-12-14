@@ -38,15 +38,22 @@ namespace Weapons
             _isAttacking = false;
         }
 
+        private void LateUpdate()
+        {
+            if (_isAttacking)
+            {
+                var originalLocalPosition = transform.localPosition;
+                var localPosition = new Vector3(originalLocalPosition.x, 0.5f, originalLocalPosition.z);
+                var eulerAngles = new Vector3(0.0f, 0.0f, SpriteRenderer.flipY ? 185.0f : 355.0f);
+                SetPosition(localPosition, eulerAngles);
+            }
+        }
+
         protected override void Use()
         {
             if (_isAttacking) return;
             base.Use();
-            var originalLocalPosition = transform.localPosition;
-            var localPosition = new Vector3(originalLocalPosition.x, 0.5f, originalLocalPosition.z);
-            var eulerAngles = new Vector3(0.0f, 0.0f, SpriteRenderer.flipY ? 185.0f : 355.0f);
             _isAttacking = true;
-            SetPosition(localPosition, eulerAngles);
             Invoke(nameof(AttackWait), AttackInterval);
         }
     

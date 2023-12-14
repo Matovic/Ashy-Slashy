@@ -15,18 +15,13 @@ public class Collisions : MonoBehaviour
     [SerializeField] AudioSource gameOverAudio;
     private float darknessTime;
     private bool interactedRecently = false;
-    private Inventory _inventory;
+    [SerializeField ]private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
     [SerializeField] private CameraScript cameraScript;
-    private void Start()
-    {
-        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        //_gameOverScreenUI = GameObject.FindGameObjectWithTag("GameOverUI");
-        //_gameOverScreenUI.SetActive(false);
-    }
 
     private void Update()
     {
+        // check for light collider
         if (Physics2D.GetRayIntersection(new Ray(player.transform.position, Vector3.forward), Mathf.Infinity, lightLayerMask)) 
         {
             darknessTime = 0;
@@ -41,6 +36,7 @@ public class Collisions : MonoBehaviour
             Destroy(gameObject);
             gameOverScreenUI.SetActive(true);
         }
+        // reset interaction 
         if (Input.GetAxis("Submit") == 0) interactedRecently = false;
     }
 
@@ -60,7 +56,6 @@ public class Collisions : MonoBehaviour
         if (collision.CompareTag("Ammo"))
         {
             Destroy(collision.gameObject);
-            //Debug.Log($"{name}");
             _inventory.IncrementBullets();
         }
         if (collision.CompareTag("Room"))
@@ -72,31 +67,16 @@ public class Collisions : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         var action = Input.GetAxis("Submit");
-        //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
         if (collision.CompareTag("Ladders"))
         {
             playerMovement.onLadder = true;
         }
         else if (collision.CompareTag("Interactable") && action != 0.0f && !interactedRecently)
         {
-            //Debug.Log($"{name} because a collision with {collision.gameObject.name}");
             var interactable = collision.gameObject.GetComponent<IInteractable>();
             interactable.Interact(player);
             interactedRecently = true;
-            //playerActionController.isBreakable = true;
-            //PlayerActionController.SetGameObject("Box", collision.gameObject);
         }
-        /*else if (collision.CompareTag("Ammo"))
-        {
-            playerActionController.isPickable = true;
-            //Debug.Log($"AMMO: {name} because a collision with {collision.gameObject.name}");
-            //playerActionController.isBreakable = true;
-            //PlayerActionController.SetGameObject("Box", collision.gameObject);
-        }*/
-        /*else if (collision.gameObject.name == "Shotgun")
-        {
-            playerActionController.isPickable = true;
-        }*/
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -109,10 +89,6 @@ public class Collisions : MonoBehaviour
         {
             cameraScript.SetInRoom(false);
         }
-        /*else if (collision.gameObject.name == "Shotgun")
-        {
-            playerActionController.isPickable = false;
-        }*/
     }
 
     public float GetDarknessTime()

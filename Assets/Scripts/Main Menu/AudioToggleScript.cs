@@ -7,12 +7,11 @@ namespace Main_Menu
 {
     public class AudioToggleScript : MonoBehaviour
     {
-        private Toggle _toggle;
+        [SerializeField] private Toggle _toggle;
         [SerializeField] private AudioSource soundtrack;
         [SerializeField] private TextMeshProUGUI audioText;
         private void Start()
         {
-            _toggle = GetComponent<Toggle>();
             _toggle.onValueChanged.AddListener((newValue) =>
             {
                 var status = newValue ? "on" : "off";

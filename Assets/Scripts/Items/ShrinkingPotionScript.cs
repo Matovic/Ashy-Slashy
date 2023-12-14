@@ -10,8 +10,6 @@ namespace Items
             Inventory inventory = player.GetComponent<Inventory>();
             // add to inventory
             inventory.AddPotion("shrink");
-            // change tag
-            //gameObject.tag = "Usable";
             Destroy(gameObject);
         }
     }

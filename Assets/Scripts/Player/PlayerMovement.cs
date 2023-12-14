@@ -9,27 +9,21 @@ namespace Player
         [SerializeField] private float staminaMax = 5.0f;
         [SerializeField] private float exhaustThreshold = 2.0f;
         private float _stamina;
-        private bool _isExhausted;
-        private SpriteRenderer _spriteRenderer;
-        private Rigidbody2D _rigidBody2D;
+        private bool _isExhausted = false;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Rigidbody2D _rigidBody2D;
         public bool onLadder = false;
         private bool _isShrinked = false;
         private Vector3 originalScale;
         [SerializeField] float scaleShrinkFactor;
         private string orientation;
     
-        // Start is called before the first frame update
         private void Start()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            _rigidBody2D = GetComponent<Rigidbody2D>();
             _stamina = staminaMax;
-            _isExhausted = false;
-            _isShrinked = false;
             originalScale = transform.localScale;
         }
 
-        // Update is called once per frame
         private void Update()
         {
             if (_isShrinked)
@@ -62,7 +56,7 @@ namespace Player
             }
             else _rigidBody2D.gravityScale = 1;
 
-            // moving section
+            // moving section, update orientation
             // move right
             if (Input.GetAxis("Horizontal") > 0)
             {

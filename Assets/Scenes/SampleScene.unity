@@ -10311,7 +10311,7 @@ Transform:
   m_GameObject: {fileID: 291796660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.28, y: 4.12, z: -2}
+  m_LocalPosition: {x: -49.3, y: 4.12, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10499,6 +10499,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1847671594}
+    - target: {fileID: 6676580061908106732, guid: dea5e43f518568e45bcf2dfd9ae4cd34, type: 3}
+      propertyPath: _boxCollider
+      value: 
+      objectReference: {fileID: 1777842410}
     - target: {fileID: 6676580061908106732, guid: dea5e43f518568e45bcf2dfd9ae4cd34, type: 3}
       propertyPath: lightTransform
       value: 
@@ -69781,6 +69785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d911a954220ee2f0e8e0d0f9517f8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slider: {fileID: 867536397}
   soundtrack: {fileID: 703776926}
   sliderText: {fileID: 2142993755}
 --- !u!114 &867536397
@@ -75920,6 +75925,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d1140eb1dbec65428cb2b5b05b90801, type: 3}
+--- !u!61 &1777842410 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5339123145918319678, guid: dea5e43f518568e45bcf2dfd9ae4cd34, type: 3}
+  m_PrefabInstance: {fileID: 311223841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1805702123
 GameObject:
   m_ObjectHideFlags: 0
@@ -76287,6 +76297,8 @@ MonoBehaviour:
   runMultiplier: 2
   staminaMax: 5
   exhaustThreshold: 2
+  _spriteRenderer: {fileID: 1847671599}
+  _rigidBody2D: {fileID: 1847671589}
   onLadder: 0
   scaleShrinkFactor: 0.4
 --- !u!61 &1847671577
@@ -76347,6 +76359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   general: {fileID: 1847671572}
+  generalAnimator: {fileID: 1847671600}
 --- !u!50 &1847671589
 Rigidbody2D:
   serializedVersion: 4
@@ -76393,6 +76406,7 @@ MonoBehaviour:
     m_Bits: 8
   darknessTimeLimit: 3
   gameOverAudio: {fileID: 295754076}
+  _inventory: {fileID: 1847671594}
   gameOverScreenUI: {fileID: 60473034}
   cameraScript: {fileID: 519420034}
 --- !u!114 &1847671594
@@ -76421,9 +76435,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c20caffb84aa1aee4f1271e8bd0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1847671594}
+  _player: {fileID: 1847671572}
+  playerMovement: {fileID: 1847671573}
 --- !u!212 &1847671599 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4361182636781176293, guid: 3f342161fd81307439ae403e7fbe32ae, type: 3}
+  m_PrefabInstance: {fileID: 143546391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1847671600 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4361182636781176292, guid: 3f342161fd81307439ae403e7fbe32ae, type: 3}
   m_PrefabInstance: {fileID: 143546391}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1852926759 stripped
@@ -78689,6 +78711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d8843d2d92d4fae82a915f07faa994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _toggle: {fileID: 2080582769}
   soundtrack: {fileID: 703776926}
   audioText: {fileID: 1190468133}
 --- !u!114 &2080582769
