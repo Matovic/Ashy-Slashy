@@ -34,14 +34,13 @@ namespace Main_Menu
     
         public void NormalOption()
         {
-            _maxEnemySpawn = 30;
+            _maxEnemySpawn = 20;
             NewGame();
         }
     
         public void HardOption()
         {
-            _maxEnemySpawn = 60;
-            _enemyInterval = 0.5f;
+            _maxEnemySpawn = 30;
             NewGame();
         }
     }
