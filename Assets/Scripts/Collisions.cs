@@ -20,11 +20,14 @@ public class Collisions : MonoBehaviour
     [SerializeField] private Inventory _inventory;
     [FormerlySerializedAs("_gameOverScreenUI")] [SerializeField] private GameObject gameOverScreenUI;
     [SerializeField] private CameraScript cameraScript;
+    [SerializeField] private GameObject popUpTextObj;
+    private PopUpText _popUpText;
     private GameOverScreen _gameOverScript;
 
     private void Start()
     {
         _gameOverScript = gameOverScreenUI.GetComponent<GameOverScreen>();
+        _popUpText = popUpTextObj.GetComponent<PopUpText>();
     }
 
     private void Update()
@@ -92,6 +95,10 @@ public class Collisions : MonoBehaviour
             var interactable = collision.gameObject.GetComponent<IInteractable>();
             interactable.Interact(player);
             interactedRecently = true;
+        }
+        else if (collision.gameObject.CompareTag("Car") && !_inventory.GetItemBool("fuel"))
+        {
+            _popUpText.CarNoFuel();
         }
     }
 

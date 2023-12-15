@@ -21,7 +21,8 @@ namespace UI
             LampText = "Finally, some light.",
             FuelText = "This should be in my car.",
             PotionWeaponText = "I can not use a potion with a weapon.",
-            PotionNotAll = "I need to collect all the potions! Otherwise, I will be stuck.";
+            PotionNotAll = "I need to collect all the potions! Otherwise, I will be stuck.",
+            CarNoFuel = "I need to find fuel first!";
 
         private static readonly string
             DarknessText1 = "I should not be here without a light.",
@@ -51,7 +52,7 @@ namespace UI
         private Collisions playerCollisions;
         private PlayerController playerController;
         private List<InventoryItem> inventoryItems = new List<InventoryItem>();
-        private bool growthPickUp, shrinkPickUp, ammoPickUp, darknessTextDisplayed, hasWeapon, notCollectedAll;
+        private bool growthPickUp, shrinkPickUp, ammoPickUp, darknessTextDisplayed, hasWeapon, notCollectedAll, carFuel;
         private void Start()
         {
             textPopUp.enabled = false;
@@ -125,6 +126,15 @@ namespace UI
             darknessTextDisplayed = false;
             hasWeapon = false;
             notCollectedAll = false;
+            carFuel = false;
+        }
+
+        public void CarNoFuel()
+        {
+            if (carFuel) return;
+            carFuel = true;
+            StartCoroutine(ShowMessage(Dialogues.CarNoFuel, delay));
+            StartCoroutine(TextPause(delay));
         }
     }
 }

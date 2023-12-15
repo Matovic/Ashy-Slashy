@@ -2367,7 +2367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d911a954220ee2f0e8e0d0f9517f8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 0}
+  _slider: {fileID: 960150843}
   soundtrack: {fileID: 729516981}
   sliderText: {fileID: 883990642}
 --- !u!114 &960150843
@@ -3626,7 +3626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d8843d2d92d4fae82a915f07faa994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toggle: {fileID: 0}
+  _toggle: {fileID: 1518584174}
   soundtrack: {fileID: 729516981}
   audioText: {fileID: 1065403364}
 --- !u!114 &1518584174

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -7,6 +9,7 @@ namespace UI
     {
         [SerializeField] private GameObject settingsScreen;
         [SerializeField] private GameObject pauseBackground;
+        private bool isInSubMenu;
 
         public void RestartGame()
         {
@@ -17,6 +20,7 @@ namespace UI
         {
             pauseBackground.SetActive(false);
             settingsScreen.SetActive(true);
+            isInSubMenu = true;
         }
         public void ContinueGame()
         {
@@ -35,11 +39,18 @@ namespace UI
             Time.timeScale = 0.0f;
             pauseBackground.SetActive(true);
         }
+        
+        public void CloseSettings()
+        {
+            //settingsScreen.SetActive(false);
+            //pauseBackground.SetActive(true);
+            isInSubMenu = false; 
+        }
 
         void Update()
         {
             var pauseButtonDown = Input.GetButtonDown("Cancel");
-            if (pauseButtonDown)
+            if (pauseButtonDown && !isInSubMenu)
             {
                 if (pauseBackground.activeSelf)
                     ContinueGame();
