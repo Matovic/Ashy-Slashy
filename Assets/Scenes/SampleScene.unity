@@ -69212,6 +69212,7 @@ MonoBehaviour:
   shotgun: {fileID: 787869119759047657, guid: 05b1c1d16118126db883b7e3b14b2d96, type: 3}
   trap: {fileID: 3386629401259064509, guid: f2108e98dfc5020328f3bbcf222e67fa, type: 3}
   machete: {fileID: 8512307789369801638, guid: cd8215d1c22736bc78884f61c26a874e, type: 3}
+  fuel: {fileID: 751043654061145149, guid: a465755becd6d1f44a5527b4f317290e, type: 3}
 --- !u!4 &671351904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2165844481100778256, guid: b31da2db47208344dabef78e036599ce, type: 3}
@@ -73751,6 +73752,7 @@ MonoBehaviour:
   shotgun: {fileID: 750931550819232084, guid: 3f2a820822dad12ffa7dcdac61828b78, type: 3}
   trap: {fileID: 0}
   machete: {fileID: 0}
+  fuel: {fileID: 0}
 --- !u!1 &1369725848
 GameObject:
   m_ObjectHideFlags: 0

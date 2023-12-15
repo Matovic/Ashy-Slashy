@@ -19,6 +19,10 @@ namespace UI
                     IsFull = true;
                     DrawItem("machete");
                     break;
+                case false when Inventory.GetItemBool("fuel"):
+                    IsFull = true;
+                    DrawItem("fuel");
+                    break;
                 case true when !Inventory.GetItemBool("weapon"):
                     IsFull = false;
                     DestroyItem();

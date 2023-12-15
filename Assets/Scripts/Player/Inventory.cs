@@ -47,6 +47,7 @@ namespace Player
                     break;
                 case "fuel":
                     _hasFuel = status;
+                    _hasWeapon = status;
                     break;
             }
         }

@@ -7,7 +7,7 @@ namespace UI
     public class DisplayItem : MonoBehaviour
     {
         [FormerlySerializedAs("item")] [SerializeField] private GameObject shotgun;
-        [SerializeField] private GameObject trap, machete;
+        [SerializeField] private GameObject trap, machete, fuel;
         private GameObject _gameObj;
         protected Inventory Inventory;
         protected bool IsFull = false;
@@ -19,9 +19,11 @@ namespace UI
             {
                 "trap" => trap,
                 "machete" => machete,
+                "fuel" => fuel,
                 _ => shotgun
             };
             _gameObj = Instantiate(item1, transform1.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), transform1);
+            _gameObj.transform.SetParent(transform);
         }
     
         protected void DrawItem()
