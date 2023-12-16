@@ -1755,6 +1755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuScreen: {fileID: 153479896}
+  mainMenuCanvas: {fileID: 1973557174}
   controlsScreen: {fileID: 148156064}
   audioScreen: {fileID: 1931890513}
 --- !u!114 &657984416
@@ -4703,7 +4704,7 @@ MonoBehaviour:
 
     F - use potion
 
-    [Enter] - action
+    [Enter] - interact
 
     [Space]
     - sprint
